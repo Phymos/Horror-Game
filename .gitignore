@@ -73,3 +73,37 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Extra Unity logs or profiling
+/[Ll]ogs/
+/[Tt]emp/
+/[Mm]emoryCaptures/
+
+# Ignore external asset folders (optional – only if you imported 3rd party assets)
+/[Aa]ssets/ExternalAssets/
+/[Aa]ssets/AssetStore/
+/[Aa]ssets/DownloadedAssets/
+
+# VS local config
+*.user
+*.userprefs
+.vscode/
+
+# Exclude builds from repo (optional)
+Build/
+Builds/
+
+/[Aa]ssets/Imported Assets/
+/[Aa]ssets/Animations/
+/[Aa]ssets/Prefabs/
+/[Aa]ssets/Sounds/
+/[Aa]ssets/TextMesh Pro/
+/[Aa]ssets/TutorialInfo/
+
+
+# Diğer klasörleri dahil et (önemli)
+!/[Aa]ssets/Scenes/
+!/[Aa]ssets/Scripts/
+!/[Aa]ssets/Settings/
+!/[Aa]ssets/Input/
+!/[Aa]ssets/Prefabs/My Prefabs/
