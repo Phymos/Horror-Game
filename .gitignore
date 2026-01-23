@@ -107,3 +107,18 @@ Builds/
 !/[Aa]ssets/Settings/
 !/[Aa]ssets/Input/
 !/[Aa]ssets/Prefabs/My Prefabs/
+
+Library/
+Temp/
+Obj/
+Logs/
+
+# 3rd party assets (public repo safe)
+Assets/Animations/*
+Assets/Prefabs/*
+Assets/Sounds/*
+
+# keep meta files so Unity refs don't break
+!Assets/Animations/*.meta
+!Assets/Prefabs/*.meta
+!Assets/Sounds/*.meta

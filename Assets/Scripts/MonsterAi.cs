@@ -1,5 +1,3 @@
-using System.Collections;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +8,6 @@ public class MonsterAi : MonoBehaviour
     public EnemyState currentState;
     NavMeshAgent agent;
     private Vector3 patrolTarget;
-    public Animator anim;
 
     [Header("Field of View Settings")]
     public Transform eyes;
@@ -40,7 +37,6 @@ public class MonsterAi : MonoBehaviour
         previousState = currentState;
 
         StartIdle();
-        SetAnimationState(currentState);
     }
 
     void Update()
@@ -88,13 +84,6 @@ public class MonsterAi : MonoBehaviour
         }
     }
 
-    // 5️⃣ Animasyon değişimi kontrolü
-    if (currentState != previousState)
-    {
-        SetAnimationState(currentState);
-        previousState = currentState;
-    }
-
     // 6️⃣ State davranışlarını çalıştır
     switch (currentState)
     {
@@ -113,16 +102,13 @@ public class MonsterAi : MonoBehaviour
     }
 }
 
+    
     void StartIdle()
     {
         idleTimer = Random.Range(10f, idleTime);
         isIdling = true;
         isPatrolling = false;
         agent.isStopped = true;
-
-        int variant = Random.Range(0, 2);
-        anim.SetInteger("idleVariant", variant);
-        SetAnimationState(EnemyState.Idle);
     }
 
     void IdleBehavior()
@@ -141,8 +127,6 @@ public class MonsterAi : MonoBehaviour
         agent.isStopped = false;
         if (agent.speed != chaseSpeed) agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-
-        SetAnimationState(EnemyState.Chase);
     }
 
     void AttackPlayer()
@@ -158,8 +142,6 @@ public class MonsterAi : MonoBehaviour
         agent.speed = patrolSpeed;
         agent.SetDestination(patrolTarget);
         isPatrolling = true;
-
-        SetAnimationState(EnemyState.Patrol);
     }
 
 
@@ -184,17 +166,6 @@ public class MonsterAi : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPos, out hit, range, NavMesh.AllAreas);
         return hit.position;
-    }
-
-    void SetAnimationState(EnemyState newState)
-    {
-        anim.SetInteger("state", (int)newState);
-
-        if (newState == EnemyState.Idle)
-        {
-            int variant = Random.Range(0, 2);
-            anim.SetInteger("idleVariant", variant);
-        }
     }
 
     void FieldOfViewCheck()

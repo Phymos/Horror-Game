@@ -16,14 +16,14 @@ public class PlayerController : MonoBehaviour
     public bool onGround = false;
     bool flashOnOff = false;
     bool isCrouching = false;
-    bool isRunning = false;
+    public bool isRunning = false;
     
     Vector2 movement;
     Rigidbody rb;
     Vector2 lookInput;
     public Animator anim;
     public CapsuleCollider playerCollider;
-    public Camera playerCamera;
+    public Transform playerCamera;
 
     float VelocityX = 0f;
     float VelocityZ = 0f;

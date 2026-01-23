@@ -18,14 +18,7 @@ public class GameSounds : MonoBehaviour
 
     void Update()
     {
-        if (playerController.onGround && rb.linearVelocity.magnitude > 0.1f)
-        {
-            s.Play("grassWalk");
-        }
-        else
-        {
-            s.Stop("grassWalk");
-        }
+        
     }
 }
         
