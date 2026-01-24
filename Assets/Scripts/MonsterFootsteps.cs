@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class PlayerFootstepSFX : MonoBehaviour
-{   
-    private PlayerController playerController;
+public class MonsterFootsteps : MonoBehaviour
+{
+    private MonsterAi monsterAi;
     public AudioSource audioSource;
     public AudioClip[] grassWalkClips;
-    public AudioClip[] grassRunClips;
+    public AudioClip[] grassChaseClips;
     public AudioClip[] concreteWalkClips;
-    public AudioClip[] concreteRunClips;
+    public AudioClip[] concreteChaseClips;
     AudioClip[] walkClips;
-    AudioClip[] runClips;
+    AudioClip[] chaseClips;
 
     void Awake()
     {
-        playerController = GetComponentInParent<PlayerController>();
-        audioSource = GetComponent<AudioSource>();
+        monsterAi = GetComponentInParent<MonsterAi>();
+        audioSource = GetComponentInParent<AudioSource>();
 
         walkClips = grassWalkClips;
-        runClips = grassRunClips;
+        chaseClips = grassChaseClips;
     }
 
     void Update()
@@ -27,22 +27,22 @@ public class PlayerFootstepSFX : MonoBehaviour
             if (hit.collider.gameObject.layer == 10) // grass
             {
                 walkClips = grassWalkClips;
-                runClips = grassRunClips;
+                chaseClips = grassChaseClips;
             }else if (hit.collider.gameObject.layer == 11) // concrete
             {
                 walkClips = concreteWalkClips;
-                runClips = concreteRunClips;
+                chaseClips = concreteChaseClips;
             }
         }
     }
 
-    void PlayFootstep()
+    void PlayMonsterFootstep()
     {
-        if (walkClips.Length == 0 || runClips.Length == 0)
+        if (walkClips.Length == 0 || chaseClips.Length == 0)
             {
                 return;
             }
-        AudioClip[] clips = playerController.isRunning ? runClips : walkClips;
+        AudioClip[] clips = monsterAi.isChasing ? chaseClips : walkClips;
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         float volume = Random.Range(0.2f, 0.3f);

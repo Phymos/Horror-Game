@@ -8,6 +8,7 @@ public class MonsterAi : MonoBehaviour
     public EnemyState currentState;
     NavMeshAgent agent;
     private Vector3 patrolTarget;
+    public bool isChasing = false;
 
     [Header("Field of View Settings")]
     public Transform eyes;
@@ -56,13 +57,10 @@ public class MonsterAi : MonoBehaviour
     bool playerVisibleOrRemembered = lastSeenTimer > 0f;
 
     // 4️⃣ State belirleme
-    if (playerVisibleOrRemembered && distanceToPlayer <= attackRange)
-    {
-        currentState = EnemyState.Attack;
-    }
-    else if (playerVisibleOrRemembered && distanceToPlayer <= chaseRange)
+    if (playerVisibleOrRemembered && distanceToPlayer <= chaseRange)
     {
         currentState = EnemyState.Chase;
+        isChasing = true;
     }
     else
     {
@@ -73,6 +71,7 @@ public class MonsterAi : MonoBehaviour
             if (!isPatrolling)
                 StartPatrol();
             isIdling = false;
+            isChasing = false;
         }
         else
         {
@@ -81,6 +80,7 @@ public class MonsterAi : MonoBehaviour
                 StartIdle();
             idleTimer -= Time.deltaTime;
             isPatrolling = false;
+            isChasing = false;
         }
     }
 
