@@ -1,31 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class pickUpKey : MonoBehaviour
+public class openLockedDoor : MonoBehaviour
 {
-    public static bool isKeyPickedUp = false;
-    public Collider keyCollider;
-    bool raycastCheck = false;
-
     Ray ray;
     RaycastHit hit;
+
+    bool isKeyPickedUp = false;
+
+    public Collider doorCollider;
+
 
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        checkPickUp();
+        isKeyPickedUp = pickUpKey.isKeyPickedUp;
     }
 
-    void checkPickUp()
+    void checkAction()
     {
         if(Physics.Raycast(ray, out hit, 100))
         {
-            if(hit.collider == keyCollider)
+            if(hit.collider == doorCollider)
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
                     isKeyPickedUp = true;
-                    Destroy(keyCollider.gameObject);
+                    Destroy(doorCollider.gameObject);
                 }
             }
         }
