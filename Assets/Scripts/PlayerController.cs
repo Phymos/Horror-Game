@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool canJump = false;
     public bool onGround = false;
     bool flashOnOff = false;
+    public bool isMoving = false;
     bool isCrouching = false;
     public bool isRunning = false;
     
@@ -138,6 +139,15 @@ public class PlayerController : MonoBehaviour
         Vector3 newPosition = currentPosition + transform.TransformDirection(moveDirection) * moveSpeed * Time.fixedDeltaTime;
 
         rb.MovePosition(newPosition);
+        
+        if (movement.magnitude > 0.1f || onGround == true)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 
     void HandleJump()
@@ -146,6 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger("jumpTrigger");
+            isRunning = false;
             canJump = false;
             onGround = false;
         }

@@ -33,7 +33,6 @@ public class MonsterAnimationHandler : MonoBehaviour
             anim.SetFloat("ChaseValue", 0f, 0.25f, Time.deltaTime);
         }
 
-        print("Speed: " + speed);
         anim.SetFloat("Speed", speed, 0.25f, Time.deltaTime);
     }
 }

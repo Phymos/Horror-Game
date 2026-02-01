@@ -42,11 +42,15 @@ public class PlayerFootstepSFX : MonoBehaviour
             {
                 return;
             }
-        AudioClip[] clips = playerController.isRunning ? runClips : walkClips;
 
-        audioSource.pitch = Random.Range(0.9f, 1.1f);
-        float volume = Random.Range(0.2f, 0.3f);
-        AudioClip clip = clips[Random.Range(0, walkClips.Length)];
-        audioSource.PlayOneShot(clip, volume);
+        if (playerController.isMoving == true)
+            {
+                AudioClip[] clips = playerController.isRunning ? runClips : walkClips;
+
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
+                float volume = Random.Range(0.2f, 0.3f);
+                AudioClip clip = clips[Random.Range(0, walkClips.Length)];
+                audioSource.PlayOneShot(clip, volume);
+            }
     }
 }
