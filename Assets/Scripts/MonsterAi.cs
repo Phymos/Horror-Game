@@ -1,8 +1,14 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class MonsterAi : MonoBehaviour
 {
+    public FieldOfView fov;
+    bool canSeePlayer;
+    float distanceToPlayer;
+
     public enum EnemyState { Idle, Patrol, Chase, Attack }
     private EnemyState previousState;
     public EnemyState currentState;
@@ -10,12 +16,6 @@ public class MonsterAi : MonoBehaviour
     private Vector3 patrolTarget;
     public bool isChasing = false;
 
-    [Header("Field of View Settings")]
-    public Transform eyes;
-    public LayerMask obstacleMask;
-    public float viewAngle = 90f;
-    public float viewDistance = 10f;
-    private bool canSeePlayer = false;
     private float lastSeenTimer = 0f;
     public float memoryTime = 1f;
 
@@ -38,15 +38,13 @@ public class MonsterAi : MonoBehaviour
         previousState = currentState;
 
         StartIdle();
+        fov = GetComponent<FieldOfView>();
     }
 
     void Update()
 {
-    // 1️⃣ Field of View kontrolü
-    FieldOfViewCheck();
-
-    // 2️⃣ Mesafeyi hesapla
-    float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+    canSeePlayer = fov.canSeePlayer;
+    distanceToPlayer = fov.distanceToTarget;
 
     // 3️⃣ Hafıza timer (Memory) update
     if (canSeePlayer)
@@ -166,56 +164,5 @@ public class MonsterAi : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPos, out hit, range, NavMesh.AllAreas);
         return hit.position;
-    }
-
-    void FieldOfViewCheck()
-    {
-        canSeePlayer = false;
-
-        float distToPlayer = Vector3.Distance(eyes.position, player.position);
-
-        // Çok yakınsa direkt gör
-        if (distToPlayer < 2f)
-        {
-            canSeePlayer = true;
-            return;
-        }
-
-        // Oyuncuya doğru yön
-        Vector3 dirToPlayer = (player.position - eyes.position).normalized;
-
-        // Görüş açısı kontrolü
-        if (Vector3.Angle(eyes.forward, dirToPlayer) < viewAngle / 2f)
-        {
-            // Engel kontrolü (örneğin duvar)
-            if (!Physics.Raycast(eyes.position, dirToPlayer, distToPlayer, obstacleMask))
-            {
-                if (distToPlayer <= viewDistance)
-                    canSeePlayer = true;
-            }
-        }
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        if (eyes == null) return;
-
-        // Çizim rengi (sarı)
-        Gizmos.color = Color.yellow;
-
-        // Görüş mesafesi çemberi
-        Gizmos.DrawWireSphere(eyes.position, viewDistance);
-
-        // Sağ ve sol sınır yönleri
-        Vector3 rightBoundary = Quaternion.Euler(0, viewAngle / 2f, 0) * eyes.forward;
-        Vector3 leftBoundary = Quaternion.Euler(0, -viewAngle / 2f, 0) * eyes.forward;
-
-        // Bu yönleri çiz
-        Gizmos.DrawLine(eyes.position, eyes.position + rightBoundary * viewDistance);
-        Gizmos.DrawLine(eyes.position, eyes.position + leftBoundary * viewDistance);
-
-        // Ortadaki ileri yönü de (gri çizgiyle)
-        Gizmos.color = Color.gray;
-        Gizmos.DrawLine(eyes.position, eyes.position + eyes.forward * viewDistance);
     }
 }

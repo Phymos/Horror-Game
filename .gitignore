@@ -122,3 +122,5 @@ Assets/Sounds/*
 !Assets/Animations/*.meta
 !Assets/Prefabs/*.meta
 !Assets/Sounds/*.meta
+
+Assets/Editor/
