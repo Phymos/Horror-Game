@@ -39,7 +39,6 @@ public class StatueMonsterAi : MonoBehaviour
     {
         fov = GetComponent<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();
-
     }
 
     void Update()
@@ -52,7 +51,7 @@ public class StatueMonsterAi : MonoBehaviour
         canSeePlayer = fov.canSeePlayer;
         distanceToPlayer = fov.distanceToPlayer;
 
-        if (seenByPlayer)
+        if (CheckVisibility())
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
@@ -81,7 +80,6 @@ public class StatueMonsterAi : MonoBehaviour
         }
         else
         {
-            // Görmüyorsa normal Idle/Patrol
             if (idleTimer <= 0)
             {
                 currentState = EnemyState.Patrol;
@@ -101,7 +99,6 @@ public class StatueMonsterAi : MonoBehaviour
             }
         }
 
-        // 6️⃣ State davranışlarını çalıştır
         switch (currentState)
         {
             case EnemyState.Idle:
@@ -170,13 +167,27 @@ public class StatueMonsterAi : MonoBehaviour
         }
     }
 
-    private void OnBecameVisible()
-    {
-        seenByPlayer = true;
-    }
+    bool CheckVisibility()
+{
+    Camera cam = Camera.main;
+    
+    Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
+    bool inViewport = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
-    private void OnBecameInvisible()
+    if (!inViewport) return false;
+
+    RaycastHit hit;
+    
+    Vector3 targetPoint = transform.position + Vector3.up * 1f; 
+    Vector3 direction = targetPoint - cam.transform.position;
+
+    if (Physics.Raycast(cam.transform.position, direction, out hit))
     {
-        seenByPlayer = false;
+        if (hit.transform == transform || hit.transform.IsChildOf(transform))
+        {
+            return true;
+        }
     }
+    return false;
+}
 }
