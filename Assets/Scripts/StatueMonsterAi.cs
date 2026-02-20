@@ -1,17 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class StatueMonsterAi : MonoBehaviour
 {
-    public FieldOfView playerFov;
-
     public Transform[] waypoints;
     int currentWaypoint = 0;
 
     FieldOfView fov;
 
-    bool canSeeTarget;
     bool canSeePlayer;
+    bool seenByPlayer;
 
     NavMeshAgent agent;
 
@@ -50,12 +49,10 @@ public class StatueMonsterAi : MonoBehaviour
 
     void Movement()
     {
-        canSeeTarget = playerFov.canSeeTarget;
-        canSeePlayer = fov.canSeeTarget;
-        distanceToPlayer = fov.distanceToTarget;
+        canSeePlayer = fov.canSeePlayer;
+        distanceToPlayer = fov.distanceToPlayer;
 
-
-        if (canSeeTarget)
+        if (seenByPlayer)
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
@@ -171,5 +168,15 @@ public class StatueMonsterAi : MonoBehaviour
                 StartPatrol();
             }
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        seenByPlayer = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        seenByPlayer = false;
     }
 }

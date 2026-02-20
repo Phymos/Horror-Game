@@ -14,9 +14,9 @@ public class FieldOfView : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
-    public bool canSeeTarget;
+    public bool canSeePlayer;
 
-    public float distanceToTarget;
+    public float distanceToPlayer;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class FieldOfView : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        WaitForSeconds wait = new WaitForSeconds(0.02f);
 
         while (true)
         {
@@ -41,30 +41,31 @@ public class FieldOfView : MonoBehaviour
 
         if (rangeChecks.Length != 0)
         {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            Transform player = rangeChecks[0].transform;
+
+            Vector3 directionToTarget = (player.position - transform.position).normalized;
             
             if(Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-                if(!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                if(!Physics.Raycast(transform.position, directionToTarget, distanceToPlayer, obstructionMask))
                 {
-                    canSeeTarget = true;
+                    canSeePlayer = true;
                 }
                 else
                 {
-                    canSeeTarget = false;
+                    canSeePlayer = false;
                 }
             }
             else
             {
-                canSeeTarget = false;
+                canSeePlayer = false;
             }
         }
-        else if (canSeeTarget)
+        else if (canSeePlayer)
         {
-            canSeeTarget = false;
+            canSeePlayer = false;
         }
     }
 }

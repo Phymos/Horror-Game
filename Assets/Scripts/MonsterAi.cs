@@ -42,8 +42,8 @@ public class MonsterAi : MonoBehaviour
 
     void Update()
 {
-    canSeePlayer = fov.canSeeTarget;
-    distanceToPlayer = fov.distanceToTarget;
+    canSeePlayer = fov.canSeePlayer;
+    distanceToPlayer = fov.distanceToPlayer;
 
     // 3️⃣ Hafıza timer (Memory) update
     if (canSeePlayer)
