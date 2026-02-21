@@ -1,10 +1,12 @@
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class StatueMonsterAi : MonoBehaviour
 {
     public FieldOfView playerFov;
+
+    public Transform[] waypoints;
+    int currentWaypoint = 0;
 
     FieldOfView fov;
 
@@ -15,12 +17,8 @@ public class StatueMonsterAi : MonoBehaviour
 
     public Transform player;
 
-    private Rigidbody rb;
-
     public enum EnemyState {Idle, Patrol, Chase }
     public EnemyState currentState;
-
-    private Vector3 patrolTarget;
 
     float lastSeenTimer = 0f;
     public float memoryTime = 1f;
@@ -41,7 +39,6 @@ public class StatueMonsterAi : MonoBehaviour
     void Start()
     {
         fov = GetComponent<FieldOfView>();
-        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
 
     }
@@ -124,7 +121,7 @@ public class StatueMonsterAi : MonoBehaviour
 
     void StartIdle()
     {
-        idleTimer = Random.Range(10f, idleTime);
+        idleTimer = Random.Range(0f, idleTime);
         isIdling = true;
         isPatrolling = false;
         agent.isStopped = true;
@@ -150,10 +147,11 @@ public class StatueMonsterAi : MonoBehaviour
 
     void StartPatrol()
     {
-        patrolTarget = GetRandomPoint(transform.position, 10f);
+        currentWaypoint = Random.Range(0, waypoints.Length);
+        agent.SetDestination(waypoints[currentWaypoint].position);
+
         agent.isStopped = false;
         agent.speed = patrolSpeed;
-        agent.SetDestination(patrolTarget);
         isPatrolling = true;
     }
 
@@ -171,13 +169,5 @@ public class StatueMonsterAi : MonoBehaviour
                 StartPatrol();
             }
         }
-    }
-
-    Vector3 GetRandomPoint(Vector3 center, float range)
-    {
-        Vector3 randomPos = center + Random.insideUnitSphere * range;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomPos, out hit, range, NavMesh.AllAreas);
-        return hit.position;
     }
 }
