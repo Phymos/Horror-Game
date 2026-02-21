@@ -14,7 +14,7 @@ public class FieldOfView : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
-    public bool canSeePlayer;
+    public bool canSeeTarget;
 
     public float distanceToTarget;
 
@@ -50,21 +50,21 @@ public class FieldOfView : MonoBehaviour
 
                 if(!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
-                    canSeePlayer = true;
+                    canSeeTarget = true;
                 }
                 else
                 {
-                    canSeePlayer = false;
+                    canSeeTarget = false;
                 }
             }
             else
             {
-                canSeePlayer = false;
+                canSeeTarget = false;
             }
         }
-        else if (canSeePlayer)
+        else if (canSeeTarget)
         {
-            canSeePlayer = false;
+            canSeeTarget = false;
         }
     }
 }

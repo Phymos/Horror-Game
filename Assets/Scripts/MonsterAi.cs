@@ -9,10 +9,11 @@ public class MonsterAi : MonoBehaviour
     bool canSeePlayer;
     float distanceToPlayer;
 
-    public enum EnemyState { Idle, Patrol, Chase, Attack }
-    private EnemyState previousState;
+    public enum EnemyState { Idle, Patrol, Chase}
     public EnemyState currentState;
+
     NavMeshAgent agent;
+
     private Vector3 patrolTarget;
     public bool isChasing = false;
 
@@ -22,7 +23,6 @@ public class MonsterAi : MonoBehaviour
     public Transform player;
 
     public float chaseRange = 10f;
-    public float attackRange = 2f;
     public float patrolSpeed = 2f;
     public float chaseSpeed = 5f;
 
@@ -35,7 +35,6 @@ public class MonsterAi : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        previousState = currentState;
 
         StartIdle();
         fov = GetComponent<FieldOfView>();
@@ -43,7 +42,7 @@ public class MonsterAi : MonoBehaviour
 
     void Update()
 {
-    canSeePlayer = fov.canSeePlayer;
+    canSeePlayer = fov.canSeeTarget;
     distanceToPlayer = fov.distanceToTarget;
 
     // 3️⃣ Hafıza timer (Memory) update
@@ -94,13 +93,9 @@ public class MonsterAi : MonoBehaviour
         case EnemyState.Chase:
             ChasePlayer();
             break;
-        case EnemyState.Attack:
-            AttackPlayer();
-            break;
     }
 }
 
-    
     void StartIdle()
     {
         idleTimer = Random.Range(10f, idleTime);
@@ -125,12 +120,6 @@ public class MonsterAi : MonoBehaviour
         agent.isStopped = false;
         if (agent.speed != chaseSpeed) agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
-    }
-
-    void AttackPlayer()
-    {
-        agent.isStopped = true;
-        Debug.Log("ATTACK!");
     }
 
     void StartPatrol()
