@@ -147,6 +147,8 @@ public class StatueMonsterAi : MonoBehaviour
 
     void StartPatrol()
     {
+        if (waypoints.Length == 0) return;
+
         currentWaypoint = Random.Range(0, waypoints.Length);
         agent.SetDestination(waypoints[currentWaypoint].position);
 
