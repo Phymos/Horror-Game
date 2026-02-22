@@ -134,11 +134,10 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-        Vector3 currentPosition = rb.position;
         Vector3 moveDirection = new Vector3(movement.x, 0, movement.y);
-        Vector3 newPosition = currentPosition + transform.TransformDirection(moveDirection) * moveSpeed * Time.fixedDeltaTime;
 
-        rb.MovePosition(newPosition);
+        Vector3 worldMove = transform.TransformDirection(moveDirection);
+        rb.linearVelocity = new Vector3(worldMove.x * moveSpeed, rb.linearVelocity.y, worldMove.z * moveSpeed);
         
         if (movement.magnitude > 0.1f || onGround == true)
         {
