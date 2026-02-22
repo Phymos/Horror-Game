@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: a6560a915ef98420e9faacc1c7438823
+guid: c0312e069fce53146ab85ccc1b8a5c33
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 4890085278179872738
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 308772
   packageName: Medieval Castle (URP)
   packageVersion: 1.0
-  assetPath: Assets/Settings/SampleSceneProfile.asset
+  assetPath: Assets/Settings/MedCastleSettings.lighting
   uploadId: 726537

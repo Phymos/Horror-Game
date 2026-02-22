@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,9 @@ public class pickUpKey : MonoBehaviour
     public static bool isKeyPickedUp = false;
     public Collider keyCollider;
     bool raycastCheck = false;
+
+    public List<GameObject> Monsters;
+    public StatueMonsterAi statueMonsterAi;
 
     Ray ray;
     RaycastHit hit;
@@ -26,6 +30,11 @@ public class pickUpKey : MonoBehaviour
                 {
                     isKeyPickedUp = true;
                     Destroy(keyCollider.gameObject);
+                    foreach (GameObject monster in Monsters)
+                    {
+                        statueMonsterAi = monster.GetComponent<StatueMonsterAi>();
+                        statueMonsterAi.enabled = true;
+                    }
                 }
             }
         }
