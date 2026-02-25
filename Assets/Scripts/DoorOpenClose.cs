@@ -5,17 +5,20 @@ public class DoorOpenClose : MonoBehaviour
 {
     Animator anim;
     bool isOpen = false;
-    public Transform player;
+    
     public Collider doorCollider;
+
+    Camera cam;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        cam = Camera.main;
     }
 
     void Update()
     {
-        if (Physics.Raycast(player.position, player.forward, out RaycastHit hitInfo, 4f))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, 3f))
         {
             if (hitInfo.collider == doorCollider)
             {
