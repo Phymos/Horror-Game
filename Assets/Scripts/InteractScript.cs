@@ -9,6 +9,7 @@ public class InteractScript : MonoBehaviour
     LayerMask interactableKeyLayer = LayerMask.GetMask("KeyLayer");
 
     pickUpKey pickUpKeyScript;
+    DoorInteract doorOpenCloseScript;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class InteractScript : MonoBehaviour
         {
             if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, 3f, interactableDoorLayer))
             {
-                doorOpenClose();
+                doorOpenCloseScript.doorOpenClose();
             }
             else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit2, 3f, interactableKeyLayer))
             {
