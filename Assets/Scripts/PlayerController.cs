@@ -6,10 +6,10 @@ using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float walkSpeed = 4f;
-    [SerializeField] float runSpeed = 8f;
-    [SerializeField] float jumpForce = 5f;
-    [SerializeField] float turnSpeed = 5f;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+    [SerializeField] float jumpForce;
+    [SerializeField] float turnSpeed;
     [SerializeField] GameObject flashlightObj;
     [SerializeField] GameObject cameraObj;
 
@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
     public CapsuleCollider playerCollider;
     public Transform playerCamera;
 
-    float VelocityX = 0f;
-    float VelocityZ = 0f;
-    float CrouchValue = 0f;
-    float pitch = 0f;
-    float moveSpeed = 4f;
+    float VelocityX;
+    float VelocityZ;
+    float CrouchValue;
+    float pitch;
+    float moveSpeed;
 
     void Awake()
     {
