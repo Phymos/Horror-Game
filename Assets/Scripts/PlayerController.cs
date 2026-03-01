@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float turnSpeed = 5f;
     [SerializeField] GameObject flashlightObj;
+    [SerializeField] GameObject cameraObj;
 
     bool canJump = false;
     public bool onGround = false;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void Run(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && isCrouching == false)
         {
             moveSpeed = runSpeed;
             isRunning = true;
@@ -90,11 +91,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isCrouching", isCrouching);
             if (isCrouching)
             {
-                playerCollider.height = 1.23f;
+                cameraObj.transform.localPosition = new Vector3(0, -0.81f, 0);
+                playerCollider.height = 1.18f;
                 playerCollider.center = new Vector3(0, 0.57f, 0);
             }
             else
             {
+                cameraObj.transform.localPosition = new Vector3(0, 0, 0);
                 playerCollider.height = 1.88f;
                 playerCollider.center = new Vector3(0, 0.94f, 0);
             }
