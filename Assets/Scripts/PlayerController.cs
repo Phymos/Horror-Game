@@ -6,6 +6,7 @@ using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] float crouchSpeed;
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
     [SerializeField] float jumpForce;
@@ -91,12 +92,14 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isCrouching", isCrouching);
             if (isCrouching)
             {
+                moveSpeed = crouchSpeed;
                 cameraObj.transform.localPosition = new Vector3(0, -0.81f, 0);
                 playerCollider.height = 1.18f;
                 playerCollider.center = new Vector3(0, 0.57f, 0);
             }
             else
             {
+                moveSpeed = walkSpeed;
                 cameraObj.transform.localPosition = new Vector3(0, 0, 0);
                 playerCollider.height = 1.88f;
                 playerCollider.center = new Vector3(0, 0.94f, 0);
