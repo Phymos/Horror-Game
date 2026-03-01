@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        moveSpeed = walkSpeed;
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
