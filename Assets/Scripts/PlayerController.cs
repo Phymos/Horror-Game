@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float turnSpeed;
     [SerializeField] GameObject flashlightObj;
-    [SerializeField] GameObject cameraObj;
-
+    
     bool canJump = false;
     public bool onGround = false;
     bool flashOnOff = false;
@@ -94,14 +93,14 @@ public class PlayerController : MonoBehaviour
             if (isCrouching)
             {
                 moveSpeed = crouchSpeed;
-                cameraObj.transform.localPosition = new Vector3(0, -0.81f, 0);
+                playerCamera.transform.localPosition = new Vector3(0, -0.81f, 0);
                 playerCollider.height = 1.18f;
                 playerCollider.center = new Vector3(0, 0.57f, 0);
             }
             else
             {
                 moveSpeed = walkSpeed;
-                cameraObj.transform.localPosition = new Vector3(0, 0, 0);
+                playerCamera.transform.localPosition = new Vector3(0, 0, 0);
                 playerCollider.height = 1.88f;
                 playerCollider.center = new Vector3(0, 0.94f, 0);
             }
