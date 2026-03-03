@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     
     bool canJump = false;
     public bool onGround = false;
-    bool flashOnOff = false;
     public bool isMoving = false;
     bool isCrouching = false;
     public bool isRunning = false;
@@ -41,8 +40,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        flashOnOff = flashlightObj.activeSelf;
     }
 
     void Update()
@@ -120,24 +117,6 @@ public class PlayerController : MonoBehaviour
     public void Camera(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();
-    }
-
-    public void Flashlight(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            flashOnOff = !flashOnOff;
-            flashlightObj.SetActive(flashOnOff);
-
-            if (flashOnOff)
-            {
-                RenderSettings.fogDensity = flashOnFogDensity;
-            }
-            else
-            {
-                RenderSettings.fogDensity = flashOffFogDensity;
-            }
-        }
     }
 
     void HandleMovement()
