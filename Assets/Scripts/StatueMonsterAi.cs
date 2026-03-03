@@ -10,7 +10,6 @@ public class StatueMonsterAi : MonoBehaviour
     FieldOfView fov;
 
     bool canSeePlayer;
-    bool seenByPlayer;
 
     NavMeshAgent agent;
 
@@ -170,22 +169,41 @@ public class StatueMonsterAi : MonoBehaviour
     bool CheckVisibility()
 {
     Camera cam = Camera.main;
-    
-    Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
-    bool inViewport = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
 
-    if (!inViewport) return false;
+    Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
-    RaycastHit hit;
-    
-    Vector3 targetPoint = transform.position + Vector3.up * 1f; 
-    Vector3 direction = targetPoint - cam.transform.position;
-
-    if (Physics.Raycast(cam.transform.position, direction, out hit))
-    {
-        if (hit.transform == transform || hit.transform.IsChildOf(transform))
+    Bounds combinedBounds = (renderers[0].bounds);
+    foreach (Renderer rend in renderers)
         {
-            return true;
+            combinedBounds.Encapsulate(rend.bounds);
+        }
+
+    Vector3 center = combinedBounds.center;
+    
+    Vector3[] bodyPoints = new Vector3[]
+    {
+        center,
+        center + Vector3.up * combinedBounds.extents.y * 0.8f,
+        center - Vector3.up * combinedBounds.extents.y,
+    };
+    
+    foreach (Vector3 point in bodyPoints)
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(point);
+        bool inViewport = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+
+        if (!inViewport) continue;
+
+        RaycastHit hit;
+        
+        Vector3 direction = point - cam.transform.position;
+
+        if (Physics.Raycast(cam.transform.position, direction, out hit))
+        {
+            if (hit.transform.root == transform.root)
+            {
+                return true;
+            }
         }
     }
     return false;

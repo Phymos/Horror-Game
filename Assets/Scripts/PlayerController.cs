@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float turnSpeed;
     [SerializeField] GameObject flashlightObj;
+    [SerializeField] float flashOnFogDensity;
+    [SerializeField] float flashOffFogDensity;
     
     bool canJump = false;
     public bool onGround = false;
@@ -129,11 +131,11 @@ public class PlayerController : MonoBehaviour
 
             if (flashOnOff)
             {
-                RenderSettings.fogDensity = 0.065f;
+                RenderSettings.fogDensity = flashOnFogDensity;
             }
             else
             {
-                RenderSettings.fogDensity = 0.085f;
+                RenderSettings.fogDensity = flashOffFogDensity;
             }
         }
     }
