@@ -3,21 +3,25 @@ using UnityEngine;
 
 public class JumpscareTrigger : MonoBehaviour
 {
-    public Object player;
     public CinemachineCamera playerCam;
     public CinemachineCamera jumpscareCam;
     AudioSource audioSource;
     public AudioClip scaryClip;
-    Vector3 triggerPos;
+
+    bool triggered = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        triggerPos = transform.localPosition;
     }
 
-    void OnTriggerEnter(Collider player)
+    void OnTriggerEnter(Collider other)
     {
+        if (triggered) return;
+        if (!other.CompareTag("Player")) return;
+
+        triggered = true;
+
         audioSource.PlayOneShot(scaryClip);
         jumpscareCam.Priority = 2;
     }
