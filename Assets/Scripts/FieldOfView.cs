@@ -12,7 +12,8 @@ public class FieldOfView : MonoBehaviour
     public GameObject playerRef;
 
     public LayerMask targetMask;
-    public LayerMask obstructionMask;
+    public LayerMask obstructionMask1;
+    public LayerMask obstructionMask2;
 
     public bool canSeePlayer;
 
@@ -49,7 +50,7 @@ public class FieldOfView : MonoBehaviour
             {
                 distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-                if(!Physics.Raycast(transform.position, directionToTarget, distanceToPlayer, obstructionMask))
+                if(!Physics.Raycast(transform.position, directionToTarget, distanceToPlayer, obstructionMask1 | obstructionMask2))
                 {
                     canSeePlayer = true;
                 }
