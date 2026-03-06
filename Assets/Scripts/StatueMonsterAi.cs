@@ -196,9 +196,11 @@ public class StatueMonsterAi : MonoBehaviour
 
         RaycastHit hit;
         
-        Vector3 direction = point - cam.transform.position;
+        Vector3 stableOrigin = cam.transform.parent != null ? cam.transform.parent.position : cam.transform.position;
+        Vector3 direction = point - stableOrigin;
+        Debug.Log("stableOrigin: " + stableOrigin);
 
-        if (Physics.Raycast(cam.transform.position, direction, out hit))
+        if (Physics.Raycast(stableOrigin, direction, out hit))
         {
             if (hit.transform.root == transform.root)
             {
