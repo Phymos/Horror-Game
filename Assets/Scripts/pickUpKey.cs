@@ -10,6 +10,8 @@ public class pickUpKey : MonoBehaviour
     public List<GameObject> Monsters;
     public StatueMonsterAi statueMonsterAi;
 
+    public GameObject objectToActivate;
+
     public void keyPickUp()
     {
         isKeyPickedUp = true;
@@ -18,6 +20,11 @@ public class pickUpKey : MonoBehaviour
         {
             statueMonsterAi = monster.GetComponent<StatueMonsterAi>();
             statueMonsterAi.enabled = true;
+        }
+
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(true);
         }
     }
 }

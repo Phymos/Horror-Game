@@ -5,6 +5,7 @@ public class DoorInteract : MonoBehaviour
     public AudioClip[] doorSounds;
     AudioSource audioSource;
     Animator doorAnim;
+    public bool isOpen;
 
     void Awake()
     {

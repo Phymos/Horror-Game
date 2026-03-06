@@ -4,6 +4,12 @@ using UnityEngine.AI;
 
 public class StatueMonsterAi : MonoBehaviour
 {
+    [SerializeField] float minDoorOpenTimer = 1f;
+    [SerializeField] float maxDoorOpenTimer = 3f;
+    float doorOpenTimer;
+    public DoorInteract currentDoor;
+    bool isWaitingForDoor = false;
+
     public Transform[] waypoints;
     int currentWaypoint = 0;
 
@@ -64,6 +70,9 @@ public class StatueMonsterAi : MonoBehaviour
             agent.updatePosition = true;
             agent.updateRotation = true;
         }
+
+        if (currentDoor != null)
+        DoorOpening();
 
         if (canSeePlayer)
         lastSeenTimer = memoryTime;
@@ -198,7 +207,6 @@ public class StatueMonsterAi : MonoBehaviour
         
         Vector3 stableOrigin = cam.transform.parent != null ? cam.transform.parent.position : cam.transform.position;
         Vector3 direction = point - stableOrigin;
-        Debug.Log("stableOrigin: " + stableOrigin);
 
         if (Physics.Raycast(stableOrigin, direction, out hit))
         {
@@ -210,4 +218,36 @@ public class StatueMonsterAi : MonoBehaviour
     }
     return false;
 }
+
+    void DoorOpening()
+    {
+        Vector3 toDestination = agent.destination - transform.position;
+        Vector3 toDoor = currentDoor.transform.position - transform.position;
+
+        float dot = Vector3.Dot(toDestination.normalized, toDoor.normalized); //dot product (yönü bulmak için, 1 ise aynı yön -1 ise zıt)
+
+        if (!currentDoor.isOpen && dot > 0.7f)
+        {
+            if (!isWaitingForDoor)
+            {
+                isWaitingForDoor = true;
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+                agent.updatePosition = false;
+                agent.updateRotation = false;
+                doorOpenTimer = Random.Range(minDoorOpenTimer, maxDoorOpenTimer);
+            }
+
+            doorOpenTimer -= Time.deltaTime;
+            if (doorOpenTimer <= 0f)
+            {
+                currentDoor.doorOpenClose();
+                agent.isStopped = false;
+                agent.updatePosition = true;
+                agent.updateRotation = true;
+                isWaitingForDoor = false;
+                currentDoor = null;
+            }
+        }
+    }
 }
