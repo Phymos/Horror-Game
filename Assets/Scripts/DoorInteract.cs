@@ -15,12 +15,12 @@ public class DoorInteract : MonoBehaviour
 
     public void doorOpenClose()
     {
-        bool isOpen = doorAnim.GetBool("isOpen");  //starts as false (its closed)
-        doorAnim.SetBool("isOpen", !isOpen);
+        isOpen = !isOpen;
+        doorAnim.SetBool("isOpen", isOpen);
 
         Debug.Log("isOpen was: " + isOpen + " | clip: " + (!isOpen ? doorSounds[0]?.name : doorSounds[1]?.name));
 
-        if (!isOpen)
+        if (isOpen)
         {
             audioSource.PlayOneShot(doorSounds[0]);
         }
