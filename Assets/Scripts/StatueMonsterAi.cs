@@ -16,6 +16,8 @@ public class StatueMonsterAi : MonoBehaviour
 
     FieldOfView fov;
 
+    public bool isSeen;
+
     bool canSeePlayer;
 
     NavMeshAgent agent;
@@ -65,6 +67,7 @@ public class StatueMonsterAi : MonoBehaviour
 
         if (CheckVisibility())
         {
+            isSeen = true;
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             agent.updatePosition = false;
@@ -73,6 +76,7 @@ public class StatueMonsterAi : MonoBehaviour
         }
         else
         {
+            isSeen = false;
             agent.isStopped = false;
             agent.updatePosition = true;
             agent.updateRotation = true;
