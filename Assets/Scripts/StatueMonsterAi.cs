@@ -40,8 +40,7 @@ public class StatueMonsterAi : MonoBehaviour
 
     bool isPatrolling = false;
     bool isIdling = false;
-    public bool isChasing = false;
-    
+    public bool isChasing = false;    
 
     void Start()
     {
@@ -56,6 +55,12 @@ public class StatueMonsterAi : MonoBehaviour
 
     void Movement()
     {
+        if (currentDoor == null && isWaitingForDoor)
+        {
+            isWaitingForDoor = false;
+            agent.isStopped = false;
+        }
+
         if (currentDoor != null)
         DoorOpening();
 
@@ -235,24 +240,29 @@ public class StatueMonsterAi : MonoBehaviour
         float dot = Vector3.Dot(toDestination.normalized, toDoor.normalized); //dot product (yönü bulmak için, 1 ise aynı yön -1 ise zıt)
         Debug.Log("dot: " + dot + " | isOpen: " + currentDoor.isOpen + " | isWaiting: " + isWaitingForDoor + " | timer: " + doorOpenTimer);
 
-        if (!currentDoor.isOpen)
+        if (currentDoor.isOpen)
         {
-            if (!isWaitingForDoor)
-            {
-                isWaitingForDoor = true;
-                agent.isStopped = true;
-                agent.velocity = Vector3.zero;
-                doorOpenTimer = Random.Range(minDoorOpenTimer, maxDoorOpenTimer);
-            }
-
-            doorOpenTimer -= Time.deltaTime;
-            if (doorOpenTimer <= 0f)
-            {
-                currentDoor.doorOpenClose();
-                agent.isStopped = false;
-                isWaitingForDoor = false;
-                currentDoor = null;
-            }
+            agent.isStopped = false;
+            isWaitingForDoor = false;
+            currentDoor = null;
         }
+    
+        if (!isWaitingForDoor)
+        {
+            isWaitingForDoor = true;
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            doorOpenTimer = Random.Range(minDoorOpenTimer, maxDoorOpenTimer);
+        }
+
+        doorOpenTimer -= Time.deltaTime;
+        if (doorOpenTimer <= 0f)
+        {
+            currentDoor.doorOpenClose();
+            agent.isStopped = false;
+            isWaitingForDoor = false;
+            currentDoor = null;
+        }
+        
     }
 }

@@ -16,6 +16,7 @@ public class DoorTrigger : MonoBehaviour
             monsterAi.currentDoor = null;
             return;
         }
+        
         monsterAi.currentDoor = door;
     }
 }
