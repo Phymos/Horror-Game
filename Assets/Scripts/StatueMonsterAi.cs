@@ -42,6 +42,8 @@ public class StatueMonsterAi : MonoBehaviour
     bool isIdling = false;
     public bool isChasing = false;    
 
+    [SerializeField] BlinkingEye blinkingEye;
+
     void Start()
     {
         fov = GetComponent<FieldOfView>();
@@ -190,6 +192,8 @@ public class StatueMonsterAi : MonoBehaviour
 
     bool CheckVisibility()
 {
+    if (blinkingEye.isBlinking) return false;
+
     Camera cam = Camera.main;
 
     Renderer[] renderers = GetComponentsInChildren<Renderer>();
