@@ -46,7 +46,7 @@ public class FieldOfView : MonoBehaviour
 
             Vector3 directionToTarget = (player.position - transform.position).normalized;
             
-            if(Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            if(angle >= 360f || Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 distanceToPlayer = Vector3.Distance(transform.position, player.position);
 

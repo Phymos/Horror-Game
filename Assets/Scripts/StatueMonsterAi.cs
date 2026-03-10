@@ -75,6 +75,7 @@ public class StatueMonsterAi : MonoBehaviour
         if (CheckVisibility())
         {
             isSeen = true;
+            lastSeenTimer = memoryTime;
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             agent.updatePosition = false;
