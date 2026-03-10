@@ -14,7 +14,7 @@ public class JumpscareTrigger : MonoBehaviour
 
     public Transform cameraPivot;
     AudioSource audioSource;
-    //public AudioClip scaryClip;
+    public AudioClip scaryClip;
     
     public Volume volume;
     public Image blackScreen;
@@ -58,6 +58,6 @@ public class JumpscareTrigger : MonoBehaviour
 
         triggered = true;
 
-        //audioSource.PlayOneShot(scaryClip);
+        audioSource.PlayOneShot(scaryClip, 2.5f);
     }
 }

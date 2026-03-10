@@ -56,7 +56,7 @@ public class BlinkingEye : MonoBehaviour
         statueMonsterAi.agent.speed = statueMonsterAi.chaseSpeed;
 
         float dist = Vector3.Distance(transform.position, statueMonsterAi.transform.position);
-        if (dist <= dangerDistance && statueMonsterAi.gameObject.activeInHierarchy)
+        if (1f < dist && dist <= dangerDistance && statueMonsterAi.gameObject.activeInHierarchy)
         {
             dangerVision.TriggerBlinkingEffect();
         }
