@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -18,5 +19,12 @@ public class DoorTrigger : MonoBehaviour
         }
         
         monsterAi.currentDoor = door;
+
+        NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+        }
     }
 }

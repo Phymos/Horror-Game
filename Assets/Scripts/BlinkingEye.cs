@@ -46,9 +46,14 @@ public class BlinkingEye : MonoBehaviour
         }
         c.a = 1f;
         blinkScreen.color = c;
+
+        statueMonsterAi.agent.speed = statueMonsterAi.chaseSpeed * 2.5f;
+
         
         yield return new WaitForSeconds(0.15f);
-        
+
+        statueMonsterAi.agent.speed = statueMonsterAi.chaseSpeed;
+
         float dist = Vector3.Distance(transform.position, statueMonsterAi.transform.position);
         if (dist <= dangerDistance && statueMonsterAi.gameObject.activeInHierarchy)
         {

@@ -20,7 +20,7 @@ public class StatueMonsterAi : MonoBehaviour
 
     bool canSeePlayer;
 
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public Transform player;
 
