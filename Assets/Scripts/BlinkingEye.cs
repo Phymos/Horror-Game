@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BlinkingEye : MonoBehaviour
@@ -70,5 +71,14 @@ public class BlinkingEye : MonoBehaviour
         c.a = 0f;
         blinkScreen.color = c;
         isBlinking = false;
+    }
+
+    public void OnBlink(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            blinkTimer = blinkMeter;
+            StartCoroutine(Blink());
+        }
     }
 }
