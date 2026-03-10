@@ -13,6 +13,10 @@ public class BlinkingEye : MonoBehaviour
     [SerializeField] float fadeInSpeed = 25f;
     [SerializeField] float fadeOutSpeed = 15f;
 
+    public StatueMonsterAi statueMonsterAi;
+    public DangerVision dangerVision;
+    [SerializeField] float dangerDistance = 5f;
+
     void Start()
     {
         blinkTimer = blinkMeter;
@@ -44,6 +48,12 @@ public class BlinkingEye : MonoBehaviour
         blinkScreen.color = c;
         
         yield return new WaitForSeconds(0.15f);
+        
+        float dist = Vector3.Distance(transform.position, statueMonsterAi.transform.position);
+        if (dist <= dangerDistance && statueMonsterAi.gameObject.activeInHierarchy)
+        {
+            dangerVision.TriggerBlinkingEffect();
+        }
         
         while (c.a > 0.01f)
         {

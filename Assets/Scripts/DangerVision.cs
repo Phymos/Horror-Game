@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class DangerVision : MonoBehaviour
 {
     [SerializeField] AudioClip soundEffect;
+    [SerializeField] AudioClip blinkingEffect;
     public StatueMonsterAi statueMonsterAi;
     public Volume postProcessingVolume;
     AudioSource audioSource;
@@ -31,10 +32,27 @@ public class DangerVision : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         postProcessingVolume.profile.TryGet(out vignette);
         postProcessingVolume.profile.TryGet(out chromaticAberration);
-        cooldownTimer = cooldownTime;
+        cooldownTimer = 0f;
     }
 
     void Update()
+    {
+        normalJumpscare();
+    }
+
+    void ActivateEffect()
+    {
+        vignette.intensity.value = Mathf.MoveTowards(vignette.intensity.value, vignetteIntensity, Time.deltaTime * vignetteSpeed);
+        chromaticAberration.intensity.value = Mathf.MoveTowards(chromaticAberration.intensity.value, chromaticAberrationIntensity, Time.deltaTime * chromaticAberrationSpeed);
+    }
+
+    void DeactivateEffect()
+    {
+        vignette.intensity.value = Mathf.MoveTowards(vignette.intensity.value, 0.18f, Time.deltaTime * vignetteSpeed);
+        chromaticAberration.intensity.value = Mathf.MoveTowards(chromaticAberration.intensity.value, 0f, Time.deltaTime * chromaticAberrationSpeed);
+    }
+
+    void normalJumpscare()
     {
         if (cooldownTimer > 0f)
         {
@@ -48,6 +66,11 @@ public class DangerVision : MonoBehaviour
                 cooldownTimer = cooldownTime;
                 hasTriggeredThisLook = false;
             }
+        }
+
+        if (statueMonsterAi.isSeen && cooldownTimer > 0f && !hasTriggeredThisLook)
+        {
+            cooldownTimer = cooldownTime;
         }
         
         bool canTrigger = statueMonsterAi.isSeen 
@@ -74,23 +97,22 @@ public class DangerVision : MonoBehaviour
             {
                 DeactivateEffect();
 
-                if (vignette.intensity.value <= 0.01f)
+                if (vignette.intensity.value <= 0.19f && chromaticAberration.intensity.value <= 0.01f)
                 {
+                    vignette.intensity.value = 0.18f;
+                    chromaticAberration.intensity.value = 0f;
                     isEffectActive = false;
                 }
             }
         }
     }
 
-    void ActivateEffect()
+    public void TriggerBlinkingEffect()
     {
-        vignette.intensity.value = Mathf.MoveTowards(vignette.intensity.value, vignetteIntensity, Time.deltaTime * vignetteSpeed);
-        chromaticAberration.intensity.value = Mathf.MoveTowards(chromaticAberration.intensity.value, chromaticAberrationIntensity, Time.deltaTime * chromaticAberrationSpeed);
-    }
+        if (isEffectActive) return;
 
-    void DeactivateEffect()
-    {
-        vignette.intensity.value = Mathf.MoveTowards(vignette.intensity.value, 0f, Time.deltaTime * vignetteSpeed);
-        chromaticAberration.intensity.value = Mathf.MoveTowards(chromaticAberration.intensity.value, 0f, Time.deltaTime * chromaticAberrationSpeed);
+        isEffectActive = true;
+        effectTimer = effectTime;
+        audioSource.PlayOneShot(blinkingEffect, 2f);
     }
 }
