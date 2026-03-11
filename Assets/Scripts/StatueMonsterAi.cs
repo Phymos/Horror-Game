@@ -159,7 +159,10 @@ public class StatueMonsterAi : MonoBehaviour
     void ChasePlayer()
     {
         agent.isStopped = false;
-        if (agent.speed != chaseSpeed) agent.speed = chaseSpeed;
+
+        float speed = blinkingEye.isBlinking ? chaseSpeed * 2.5f : chaseSpeed;
+        if (agent.speed != speed) agent.speed = speed;
+
         agent.SetDestination(player.position);
     }
 
