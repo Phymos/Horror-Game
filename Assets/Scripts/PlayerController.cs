@@ -186,12 +186,12 @@ public class PlayerController : MonoBehaviour
         if (isRunning)
         {
             playerStamina -= Time.deltaTime * staminaDrain;
-            slider.value = playerStamina;
         }
         else if (!isRunning && playerStamina <= maxStamina)
         {
             playerStamina += Time.deltaTime * staminaRegen;
-            slider.value = playerStamina;
         }
+
+        slider.value = playerStamina / maxStamina;
     }
 }
