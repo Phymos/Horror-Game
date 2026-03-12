@@ -18,8 +18,6 @@ public class DoorInteract : MonoBehaviour
         isOpen = !isOpen;
         doorAnim.SetBool("isOpen", isOpen);
 
-        Debug.Log("isOpen was: " + isOpen + " | clip: " + (!isOpen ? doorSounds[0]?.name : doorSounds[1]?.name));
-
         if (isOpen)
         {
             audioSource.PlayOneShot(doorSounds[0]);

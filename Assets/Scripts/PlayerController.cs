@@ -1,7 +1,9 @@
 using System;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
@@ -11,9 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float runSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float turnSpeed;
-    [SerializeField] GameObject flashlightObj;
-    [SerializeField] float flashOnFogDensity;
-    [SerializeField] float flashOffFogDensity;
     
     bool canJump = false;
     public bool onGround = false;
@@ -34,12 +33,19 @@ public class PlayerController : MonoBehaviour
     float pitch;
     float moveSpeed;
 
+    [SerializeField] float maxStamina = 100f;
+    float playerStamina = 100f;
+    public Slider slider;
+    [SerializeField] float staminaDrain = 0.5f;
+    [SerializeField] float staminaRegen = 0.5f;
+
     void Awake()
     {
         moveSpeed = walkSpeed;
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerStamina = maxStamina;
     }
 
     void Update()
@@ -55,6 +61,8 @@ public class PlayerController : MonoBehaviour
         float targetCrouch = isCrouching ? 1f : 0f;
         CrouchValue = Mathf.Lerp(CrouchValue, targetCrouch, Time.deltaTime * 10f);
         anim.SetFloat("CrouchValue", CrouchValue);
+
+        StaminaBarController();
     }
 
     void FixedUpdate()
@@ -71,12 +79,12 @@ public class PlayerController : MonoBehaviour
 
     public void Run(InputAction.CallbackContext context)
     {
-        if (context.performed && isCrouching == false)
+        if (context.performed && isCrouching == false && playerStamina >= 0f)
         {
             moveSpeed = runSpeed;
             isRunning = true;
         }
-        else if (context.canceled)
+        else if (context.canceled || playerStamina <= 0f)
         {
             moveSpeed = walkSpeed;
             isRunning = false;
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isRunning)
         {
             isCrouching = !isCrouching;
             anim.SetBool("isCrouching", isCrouching);
@@ -165,6 +173,25 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
+        }
+    }
+
+    void StaminaBarController()
+    {
+        if (playerStamina <= 0f)
+        {
+            isRunning = false;
+            moveSpeed = walkSpeed;
+        }
+        if (isRunning)
+        {
+            playerStamina -= Time.deltaTime * staminaDrain;
+            slider.value = playerStamina;
+        }
+        else if (!isRunning && playerStamina <= maxStamina)
+        {
+            playerStamina += Time.deltaTime * staminaRegen;
+            slider.value = playerStamina;
         }
     }
 }

@@ -18,14 +18,18 @@ public class BlinkingEye : MonoBehaviour
     public DangerVision dangerVision;
     [SerializeField] float dangerDistance = 5f;
 
+    public Slider slider;
+
     void Start()
     {
         blinkTimer = blinkMeter;
+        slider.value = blinkMeter;
     }
 
     void Update()
     {
         blinkTimer -= Time.deltaTime * drainSpeed;
+        slider.value = blinkTimer;
 
         if (blinkTimer <= 0)
         {
