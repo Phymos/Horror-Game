@@ -13,7 +13,7 @@ public class MonsterAi : MonoBehaviour
     bool canSeePlayer;
     float distanceToPlayer;
 
-    public enum EnemyState { Idle, Patrol, Chase}
+    public enum EnemyState { Idle, Patrol, Chase, Investigate}
     public EnemyState currentState;
 
     public Transform[] waypoints;
@@ -40,6 +40,7 @@ public class MonsterAi : MonoBehaviour
     bool isIdling = false;
 
     [SerializeField] float hearingRange = 10f;
+    Vector3 investigateTarget;
 
     void Start()
     {
@@ -82,7 +83,7 @@ public class MonsterAi : MonoBehaviour
             currentState = EnemyState.Chase;
             isChasing = true;
         }
-        else
+        else if (currentState != EnemyState.Investigate)
         {
             if (idleTimer <= 0)
             {
@@ -113,6 +114,9 @@ public class MonsterAi : MonoBehaviour
                 break;
             case EnemyState.Chase:
                 ChasePlayer();
+                break;
+            case EnemyState.Investigate:
+                InvestigateBehavior();
                 break;
         }
     }
@@ -229,7 +233,23 @@ public class MonsterAi : MonoBehaviour
         float dist = Vector3.Distance(transform.position, soundPos);
         if (dist < intensity * hearingRange)
         {
-            agent.SetDestination(soundPos);
+            investigateTarget = soundPos;
+            currentState = EnemyState.Investigate;
+            isPatrolling = false;
+            isIdling = false;
+        }
+    }
+
+    void InvestigateBehavior()
+    {
+        agent.isStopped = false;
+        agent.speed = patrolSpeed;
+        agent.SetDestination(investigateTarget);
+
+        if (!agent.pathPending && agent.remainingDistance < 1f)
+        {
+            StartIdle();
+            currentState = EnemyState.Idle;
         }
     }
 }
