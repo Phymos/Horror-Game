@@ -1,16 +1,23 @@
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class MonsterAi : MonoBehaviour
 {
+    [SerializeField] float minDoorOpenTimer = 1f;
+    [SerializeField] float maxDoorOpenTimer = 3f;
+    float doorOpenTimer;
+    public DoorInteract currentDoor;
+    bool isWaitingForDoor = false;
+
     public FieldOfView fov;
     bool canSeePlayer;
     float distanceToPlayer;
 
     public enum EnemyState { Idle, Patrol, Chase}
     public EnemyState currentState;
+
+    public Transform[] waypoints;
+    int currentWaypoint = 0;
 
     NavMeshAgent agent;
 
@@ -32,6 +39,8 @@ public class MonsterAi : MonoBehaviour
     bool isPatrolling = false;
     bool isIdling = false;
 
+    [SerializeField] float hearingRange = 10f;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -41,60 +50,82 @@ public class MonsterAi : MonoBehaviour
     }
 
     void Update()
-{
-    canSeePlayer = fov.canSeePlayer;
-    distanceToPlayer = fov.distanceToPlayer;
-
-    // 3️⃣ Hafıza timer (Memory) update
-    if (canSeePlayer)
-        lastSeenTimer = memoryTime;
-    else
-        lastSeenTimer -= Time.deltaTime;
-
-    bool playerVisibleOrRemembered = lastSeenTimer > 0f;
-
-    // 4️⃣ State belirleme
-    if (playerVisibleOrRemembered && distanceToPlayer <= chaseRange)
     {
-        currentState = EnemyState.Chase;
-        isChasing = true;
+        Movement();
     }
-    else
+
+    void Movement()
     {
-        // Görmüyorsa normal Idle/Patrol
-        if (idleTimer <= 0)
+        if (currentDoor == null && isWaitingForDoor)
         {
-            currentState = EnemyState.Patrol;
-            if (!isPatrolling)
-                StartPatrol();
-            isIdling = false;
-            isChasing = false;
+            isWaitingForDoor = false;
+            agent.isStopped = false;
+        }
+
+        if (currentDoor != null)
+        DoorOpening();
+
+        if (isWaitingForDoor) return;
+
+        canSeePlayer = fov.canSeePlayer;
+        distanceToPlayer = fov.distanceToPlayer;
+
+        if (canSeePlayer)
+            lastSeenTimer = memoryTime;
+        else
+            lastSeenTimer -= Time.deltaTime;
+
+        bool playerVisibleOrRemembered = lastSeenTimer > 0f;
+
+        if (playerVisibleOrRemembered && distanceToPlayer <= chaseRange)
+        {
+            currentState = EnemyState.Chase;
+            isChasing = true;
         }
         else
         {
-            currentState = EnemyState.Idle;
-            if (!isIdling)
-                StartIdle();
-            idleTimer -= Time.deltaTime;
-            isPatrolling = false;
-            isChasing = false;
+            if (idleTimer <= 0)
+            {
+                currentState = EnemyState.Patrol;
+                if (!isPatrolling)
+                    StartPatrol();
+                isIdling = false;
+                isChasing = false;
+            }
+            else
+            {
+                currentState = EnemyState.Idle;
+                if (!isIdling)
+                    StartIdle();
+                idleTimer -= Time.deltaTime;
+                isPatrolling = false;
+                isChasing = false;
+            }
+        }
+
+        switch (currentState)
+        {
+            case EnemyState.Idle:
+                IdleBehavior();
+                break;
+            case EnemyState.Patrol:
+                PatrolBehavior();
+                break;
+            case EnemyState.Chase:
+                ChasePlayer();
+                break;
         }
     }
-
-    // 6️⃣ State davranışlarını çalıştır
-    switch (currentState)
+ 
+    private void OnEnable() 
     {
-        case EnemyState.Idle:
-            IdleBehavior();
-            break;
-        case EnemyState.Patrol:
-            PatrolBehavior();
-            break;
-        case EnemyState.Chase:
-            ChasePlayer();
-            break;
+        NoiseSystem.OnNoiseMade += OnHearedSound;
     }
-}
+
+    private void OnDisable() 
+    {
+        NoiseSystem.OnNoiseMade -= OnHearedSound;
+    }
 
     void StartIdle()
     {
@@ -124,12 +155,16 @@ public class MonsterAi : MonoBehaviour
 
     void StartPatrol()
     {
-        patrolTarget = GetRandomPoint(transform.position, 10f);
+        if (waypoints.Length == 0) return;
+
+        currentWaypoint = Random.Range(0, waypoints.Length);
+        agent.SetDestination(waypoints[currentWaypoint].position);
+
         agent.isStopped = false;
         agent.speed = patrolSpeed;
-        agent.SetDestination(patrolTarget);
         isPatrolling = true;
     }
+
 
 
     void PatrolBehavior()
@@ -153,5 +188,48 @@ public class MonsterAi : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPos, out hit, range, NavMesh.AllAreas);
         return hit.position;
+    }
+
+    void DoorOpening()
+    {
+        Vector3 toDestination = agent.destination - transform.position;
+        Vector3 toDoor = currentDoor.transform.position - transform.position;
+
+        float dot = Vector3.Dot(toDestination.normalized, toDoor.normalized); //dot product (yönü bulmak için, 1 ise aynı yön -1 ise zıt)
+        Debug.Log("dot: " + dot + " | isOpen: " + currentDoor.isOpen + " | isWaiting: " + isWaitingForDoor + " | timer: " + doorOpenTimer);
+
+        if (currentDoor.isOpen)
+        {
+            agent.isStopped = false;
+            isWaitingForDoor = false;
+            currentDoor = null;
+        }
+    
+        if (!isWaitingForDoor)
+        {
+            isWaitingForDoor = true;
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            doorOpenTimer = Random.Range(minDoorOpenTimer, maxDoorOpenTimer);
+        }
+
+        doorOpenTimer -= Time.deltaTime;
+        if (doorOpenTimer <= 0f)
+        {
+            currentDoor.doorOpenClose();
+            agent.isStopped = false;
+            isWaitingForDoor = false;
+            currentDoor = null;
+        }
+        
+    }
+
+    void OnHearedSound(Vector3 soundPos, float intensity)
+    {
+        float dist = Vector3.Distance(transform.position, soundPos);
+        if (dist < intensity * hearingRange)
+        {
+            agent.SetDestination(soundPos);
+        }
     }
 }
