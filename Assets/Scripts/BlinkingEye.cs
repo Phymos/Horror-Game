@@ -18,18 +18,18 @@ public class BlinkingEye : MonoBehaviour
     public DangerVision dangerVision;
     [SerializeField] float dangerDistance = 5f;
 
-    public Slider slider;
+    public Slider blinkSlider;
 
     void Start()
     {
         blinkTimer = blinkMeter;
-        slider.value = blinkMeter;
+        blinkSlider.value = blinkTimer / blinkMeter;
     }
 
     void Update()
     {
         blinkTimer -= Time.deltaTime * drainSpeed;
-        slider.value = blinkTimer;
+        blinkSlider.value = blinkTimer / blinkMeter;
 
         if (blinkTimer <= 0)
         {
@@ -54,7 +54,11 @@ public class BlinkingEye : MonoBehaviour
         
         yield return new WaitForSeconds(0.15f);
 
-        float dist = Vector3.Distance(transform.position, statueMonsterAi.transform.position);
+        float dist = statueMonsterAi != null
+            ?   Vector3.Distance(transform.position, statueMonsterAi.transform.position)
+            :   float.MaxValue;
+
+
         if (1f < dist && dist <= dangerDistance && statueMonsterAi.gameObject.activeInHierarchy)
         {
             dangerVision.TriggerBlinkingEffect();

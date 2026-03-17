@@ -17,8 +17,8 @@ public class JumpscareTrigger : MonoBehaviour
     public AudioClip scaryClip;
     
     public Volume volume;
-    public Image blackScreen;
     Vignette vignette;
+    private Image blackScreen;
 
     bool triggered = false;
 
@@ -26,6 +26,7 @@ public class JumpscareTrigger : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         volume.profile.TryGet<Vignette>(out vignette);
+        blackScreen = GameObject.FindWithTag("blackScreen").GetComponent<Image>();
     }
 
     void Update()

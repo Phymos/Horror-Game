@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float maxStamina = 100f;
     float playerStamina = 100f;
-    public Slider slider;
+    public Slider staminaSlider;
     [SerializeField] float staminaDrain = 0.5f;
     [SerializeField] float staminaRegen = 0.5f;
 
@@ -192,6 +192,6 @@ public class PlayerController : MonoBehaviour
             playerStamina += Time.deltaTime * staminaRegen;
         }
 
-        slider.value = playerStamina / maxStamina;
+        staminaSlider.value = playerStamina / maxStamina;
     }
 }
