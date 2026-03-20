@@ -23,7 +23,6 @@ public class NoiseSlider : MonoBehaviour
         noiseLevel = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleSlider();
@@ -38,6 +37,7 @@ public class NoiseSlider : MonoBehaviour
         else
         {
             noiseSlider.value = Mathf.Lerp(noiseSlider.value, targetValue, Time.deltaTime * sliderSpeed);
+            fill.color = gradient.Evaluate(noiseSlider.value);
         }
 
         if (cooldownTime > 0)

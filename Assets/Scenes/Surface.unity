@@ -5340,7 +5340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSlider
   noiseSlider: {fileID: 183149585}
   maxValue: 10
-  sliderSpeed: 1
+  sliderSpeed: 2
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5371,6 +5371,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  cooldownTimer: 0.3
   fill: {fileID: 1491295365}
 --- !u!4 &610880766 stripped
 Transform:
@@ -7286,19 +7287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c916edd39998cb442800f4d92ccb78eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
 --- !u!4 &827214143
 Transform:
   m_ObjectHideFlags: 0
