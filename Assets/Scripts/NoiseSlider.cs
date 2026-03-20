@@ -9,9 +9,11 @@ public class NoiseSlider : MonoBehaviour
     [SerializeField] Slider noiseSlider;
     [SerializeField] float maxValue = 10f;
     [SerializeField] float sliderSpeed = 3f;
+    [SerializeField] Gradient gradient;
+
+    public Image fill;
 
     float noiseLevel;
-
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class NoiseSlider : MonoBehaviour
         if (noiseSlider.value > 0)
         {
             noiseSlider.value -= Time.deltaTime * sliderSpeed;
+            fill.color = gradient.Evaluate(noiseSlider.value);
         }
     }
 
