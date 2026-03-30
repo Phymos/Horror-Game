@@ -6,6 +6,13 @@ public class NoiseEmitter : MonoBehaviour
 {
     [SerializeField] float intensity = 2f;
     [SerializeField] Object NoiseEmitterObject;
+    [SerializeField] AudioClip noiseClip;
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
