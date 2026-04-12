@@ -47,8 +47,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         playerStamina = maxStamina;
 
-        float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
-        sensivity = savedSensivity;
+        sensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
     }
 
     void Update()
