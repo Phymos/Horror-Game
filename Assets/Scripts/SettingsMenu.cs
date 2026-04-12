@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Volume postProcessingVolume;
     private ColorAdjustments colorAdjustments;
+    public PlayerController playerController;
 
     void Start()
     {
@@ -18,6 +19,9 @@ public class SettingsMenu : MonoBehaviour
 
         float savedVolume = PlayerPrefs.GetFloat("Volume", 0f);
         SetVolume(savedVolume);
+
+        float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
+        SetSensivity(savedSensivity);
     }
 
     public void SetBrightness(float brightness)
@@ -30,7 +34,12 @@ public class SettingsMenu : MonoBehaviour
     {
         audioMixer.SetFloat("Volume", volume);
 
-        float savedVolume = PlayerPrefs.GetFloat("Volume", 0f);
         PlayerPrefs.SetFloat("Volume", volume);
+    }
+
+    public void SetSensivity(float sensivity)
+    {
+        PlayerPrefs.SetFloat("Sensivity", sensivity);
+        playerController.sensivity = sensivity;
     }
 }

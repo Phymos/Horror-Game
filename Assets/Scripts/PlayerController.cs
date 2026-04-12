@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] float runSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] float turnSpeed;
+    public float sensivity;
     
     bool canJump = false;
     public bool onGround = false;
@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerStamina = maxStamina;
+
+        float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
+        sensivity = savedSensivity;
     }
 
     void Update()
@@ -158,11 +161,11 @@ public class PlayerController : MonoBehaviour
 
     void HandleTurn()
     {
-        float mouseX = lookInput.x * turnSpeed * Time.deltaTime;
+        float mouseX = lookInput.x * sensivity * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, mouseX, 0f);
         rb.MoveRotation(rb.rotation * turnRotation);
 
-        pitch -= lookInput.y * turnSpeed * Time.deltaTime;
+        pitch -= lookInput.y * sensivity * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, -90f, 90f);
 
         playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
