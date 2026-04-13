@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float staminaDrain = 0.5f;
     [SerializeField] float staminaRegen = 0.5f;
 
+    //refactor all these in the future
+
     void Awake()
     {
         moveSpeed = walkSpeed;
