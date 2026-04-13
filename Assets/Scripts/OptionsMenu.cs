@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -16,6 +17,10 @@ public class OptionsMenu : MonoBehaviour
     public TMPro.TextMeshProUGUI brightnessText;
     public UnityEngine.UI.Slider brightnessSlider;
 
+    [Header("Sensivity")]
+    public UnityEngine.UI.Slider sensivitySlider;
+    public TMPro.TextMeshProUGUI sensivityText;
+
     void Start()
     {
         postProcessingVolume.profile.TryGet(out colorAdjustments);
@@ -30,6 +35,7 @@ public class OptionsMenu : MonoBehaviour
 
         float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
         SetSensivity(savedSensivity);
+        sensivitySlider.value = savedSensivity;
     }
 
     public void SetBrightness(float brightness)
@@ -59,5 +65,7 @@ public class OptionsMenu : MonoBehaviour
     public void SetSensivity(float sensivity)
     {
         PlayerPrefs.SetFloat("Sensivity", sensivity);
+
+        sensivityText.text = Mathf.RoundToInt(sensivity) + "%";
     }
 }
