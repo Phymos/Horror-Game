@@ -66,7 +66,11 @@ public class OptionsMenu : MonoBehaviour
     public void SetSensivity(float sensivity)
     {
         PlayerPrefs.SetFloat("Sensivity", sensivity);
-        playerController.sensivity = sensivity;
+
+        if (playerController != null)
+        {
+            playerController.sensivity = sensivity;
+        }
 
         sensivityText.text = Mathf.RoundToInt(sensivity) + "%";
     }
