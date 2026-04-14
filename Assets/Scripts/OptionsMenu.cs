@@ -39,14 +39,6 @@ public class OptionsMenu : MonoBehaviour
         sensivitySlider.value = savedSensivity;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
     public void SetBrightness(float brightness)
     {
         colorAdjustments.postExposure.value = brightness;
