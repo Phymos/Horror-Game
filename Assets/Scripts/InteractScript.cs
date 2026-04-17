@@ -38,10 +38,6 @@ public class InteractScript : MonoBehaviour
             {
                 levelLoader.LoadLevel(nextLevelNo);
             }
-            else
-            {
-                return;
-            }
         }
     }
 }

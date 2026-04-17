@@ -11,6 +11,9 @@ public class PlayerFootstepSFX : MonoBehaviour
     AudioClip[] walkClips;
     AudioClip[] runClips;
 
+    public AudioClip jumpClip;
+    public AudioClip landClip;
+
     void Awake()
     {
         playerController = GetComponentInParent<PlayerController>();
@@ -54,5 +57,15 @@ public class PlayerFootstepSFX : MonoBehaviour
 
                 NoiseSystem.MakeNoise(transform.position + Vector3.forward, 2f);
             }
+    }
+
+    public void PlayJumpSound()
+    {
+        audioSource.PlayOneShot(jumpClip);
+    }
+
+    public void PlayLandSound()
+    {
+        audioSource.PlayOneShot(landClip);
     }
 }

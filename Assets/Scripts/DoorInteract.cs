@@ -6,6 +6,7 @@ public class DoorInteract : MonoBehaviour
     AudioSource audioSource;
     Animator doorAnim;
     public bool isOpen;
+    public float noiseIntensity;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class DoorInteract : MonoBehaviour
     {
         isOpen = !isOpen;
         doorAnim.SetBool("isOpen", isOpen);
+        NoiseSystem.MakeNoise(GameObject.FindWithTag("Player").transform.position, noiseIntensity);
 
         if (isOpen)
         {

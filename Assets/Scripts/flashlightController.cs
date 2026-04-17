@@ -9,6 +9,8 @@ public class flashlightController : MonoBehaviour
     [SerializeField] AudioClip flashlightSound;
     bool flashOnOff = false;
 
+    public float intensity;
+
     AudioSource audioSource;
     
     void Awake()
@@ -24,6 +26,8 @@ public class flashlightController : MonoBehaviour
             flashOnOff = !flashOnOff;
             flashlightObj.SetActive(flashOnOff);
             audioSource.PlayOneShot(flashlightSound);
+
+            NoiseSystem.MakeNoise(transform.position, intensity);
 
             if (flashOnOff)
             {
