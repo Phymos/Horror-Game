@@ -39,7 +39,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float staminaDrain = 0.5f;
     [SerializeField] float staminaRegen = 0.5f;
 
+    PlayerFootstepSFX playerFootstep;
+
     //refactor all these in the future
+    //delete the connection between playerFootstepSFX.cs in future projects
 
     void Awake()
     {
@@ -48,6 +51,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerStamina = maxStamina;
+
+        playerFootstep = GetComponentInChildren<PlayerFootstepSFX>();
 
         sensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
     }
@@ -177,6 +182,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
+            playerFootstep.PlayLandSound();
         }
     }
 

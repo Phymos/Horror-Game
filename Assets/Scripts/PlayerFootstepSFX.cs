@@ -62,10 +62,12 @@ public class PlayerFootstepSFX : MonoBehaviour
     public void PlayJumpSound()
     {
         audioSource.PlayOneShot(jumpClip);
+        NoiseSystem.MakeNoise(transform.position + Vector3.forward, 2.5f);
     }
 
     public void PlayLandSound()
     {
         audioSource.PlayOneShot(landClip);
+        NoiseSystem.MakeNoise(transform.position + Vector3.forward, 4f);
     }
 }
