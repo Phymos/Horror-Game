@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     public void Run(InputAction.CallbackContext context)
     {
-        if (context.performed && isCrouching == false && playerStamina >= 0f)
+        if (context.performed && isCrouching == false && playerStamina >= 0f && onGround)
         {
             moveSpeed = runSpeed;
             isRunning = true;
@@ -159,7 +159,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger("jumpTrigger");
-            isRunning = false;
             canJump = false;
             onGround = false;
         }
