@@ -7,12 +7,17 @@ public class InteractScript : MonoBehaviour
     
     LayerMask interactableDoorLayer;
     LayerMask interactableKeyLayer;
+    LayerMask interactableNextLevelLayer;
+
+    public LevelLoader levelLoader;
+    public int nextLevelNo;
 
     void Awake()
     {
         Cam = Camera.main;
         interactableDoorLayer = LayerMask.GetMask("DoorLayer");
         interactableKeyLayer = LayerMask.GetMask("KeyLayer");
+        interactableNextLevelLayer = LayerMask.GetMask("NextLevelLayer");
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -28,6 +33,14 @@ public class InteractScript : MonoBehaviour
             {
                 pickUpKey pickUpKeyScript = hit2.collider.GetComponent<pickUpKey>();
                 pickUpKeyScript.keyPickUp();
+            }
+            else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit3, 3f, interactableNextLevelLayer))
+            {
+                levelLoader.LoadLevel(nextLevelNo);
+            }
+            else
+            {
+                return;
             }
         }
     }

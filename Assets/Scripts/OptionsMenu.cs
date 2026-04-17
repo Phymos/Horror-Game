@@ -30,11 +30,11 @@ public class OptionsMenu : MonoBehaviour
         SetBrightness(savedBrightness);
         brightnessSlider.value = savedBrightness;
 
-        float savedVolume = PlayerPrefs.GetFloat("Volume", 0f);
+        float savedVolume = PlayerPrefs.GetFloat("Volume", 1f);
         SetVolume(savedVolume);
         volumeSlider.value = savedVolume;
 
-        float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 1f);
+        float savedSensivity = PlayerPrefs.GetFloat("Sensivity", 15f);
         SetSensivity(savedSensivity);
         sensivitySlider.value = savedSensivity;
     }
