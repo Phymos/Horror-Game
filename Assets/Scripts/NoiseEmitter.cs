@@ -20,6 +20,8 @@ public class NoiseEmitter : MonoBehaviour
         {
             NoiseSystem.MakeNoise(transform.position, intensity);
 
+            audioSource.PlayOneShot(noiseClip);
+
             Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
             foreach (Rigidbody rb in rbs)
             {

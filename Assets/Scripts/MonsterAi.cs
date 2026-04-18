@@ -42,6 +42,8 @@ public class MonsterAi : MonoBehaviour
     [SerializeField] float hearingRange = 10f;
     Vector3 investigateTarget;
 
+    //find a way to make a better hearing system for future this kinda works but not very good
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
