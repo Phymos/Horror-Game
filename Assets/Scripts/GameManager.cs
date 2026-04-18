@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public bool hasKey = false;
+    public string lastExitPoint = "";
 
     void Awake()
     {

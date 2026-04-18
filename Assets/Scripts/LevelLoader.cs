@@ -10,8 +10,9 @@ public class LevelLoader : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI progressText;
 
-    public void LoadLevel(int sceneIndex)
+    public void LoadLevel(int sceneIndex, string exitPoint = "")
     {
+        GameManager.Instance.lastExitPoint = exitPoint;
         StartCoroutine(LoadAsync(sceneIndex));
     }
 

@@ -4202,6 +4202,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030975111, guid: abc00000000002289849505848579445, type: 3}
   m_PrefabInstance: {fileID: 133266071}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &406167081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7106891275522845062, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
+  m_PrefabInstance: {fileID: 563273034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408367532
 GameObject:
   m_ObjectHideFlags: 0
@@ -9725,7 +9730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoiseEmitter
   intensity: 2
   NoiseEmitterObject: {fileID: 1017351949}
-  noiseClip: {fileID: 0}
+  noiseClip: {fileID: 8300000, guid: 93c4a7f112affee49ade2f91e044d001, type: 3}
 --- !u!65 &1017351951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9760,7 +9765,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14463,6 +14468,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ded224585d01b45bc486a667c30045, type: 3}
+--- !u!1 &1545969980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545969982}
+  - component: {fileID: 1545969981}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1545969981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545969980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d158daa378cc9e247bb99cddb2b02fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  hasKey: 0
+  lastExitPoint: 
+--- !u!4 &1545969982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545969980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 447.94827, y: 132.68909, z: 479.8895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1550703348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7191191198719907384, guid: d1074cf1fb6ec3d45a4b3eec903ef7f7, type: 3}
@@ -16228,6 +16279,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030972753, guid: abc00000000006586831036046846930, type: 3}
   m_PrefabInstance: {fileID: 1801194041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1821196431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1821196432}
+  m_Layer: 0
+  m_Name: Basement Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1821196432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821196431}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 432.435, y: 134.439, z: 479.261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1823350722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17218,7 +17300,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6281914308298894524, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
   m_PrefabInstance: {fileID: 563273034}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 406167081}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 848a17e558d14384a9e1991d0c75f08d, type: 3}
@@ -17985,6 +18067,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000015333494863047693861, type: 3}
+--- !u!1 &2050277558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2050277560}
+  - component: {fileID: 2050277559}
+  m_Layer: 0
+  m_Name: Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2050277559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050277558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb5c33df99f4d84aa726d026c06421d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
+  basementExitSpawn: {fileID: 1821196432}
+  player: {fileID: 406167081}
+--- !u!4 &2050277560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050277558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.13901, y: -0, z: 5.14372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2053876428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18870,3 +18998,6 @@ SceneRoots:
   - {fileID: 8568045794093499826}
   - {fileID: 749385883}
   - {fileID: 2028083520}
+  - {fileID: 1545969982}
+  - {fileID: 2050277560}
+  - {fileID: 1821196432}

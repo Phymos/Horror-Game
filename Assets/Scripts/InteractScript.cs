@@ -36,7 +36,8 @@ public class InteractScript : MonoBehaviour
             }
             else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit3, 3f, interactableNextLevelLayer))
             {
-                levelLoader.LoadLevel(nextLevelNo);
+                string exitPoint = nextLevelNo == 1 ? "basement" : "";
+                levelLoader.LoadLevel(nextLevelNo, exitPoint);
             }
         }
     }
