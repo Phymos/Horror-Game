@@ -31,8 +31,8 @@ public class InteractScript : MonoBehaviour
             }
             else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit2, 3f, interactableKeyLayer))
             {
-                pickUpKey pickUpKeyScript = hit2.collider.GetComponent<pickUpKey>();
-                pickUpKeyScript.keyPickUp();
+                PickUpKey pickUpKeyScript = hit2.collider.GetComponent<PickUpKey>();
+                pickUpKeyScript.KeyPickUp();
             }
             else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit3, 3f, interactableNextLevelLayer))
             {

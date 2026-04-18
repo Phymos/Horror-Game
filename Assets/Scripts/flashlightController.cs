@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class flashlightController : MonoBehaviour
+public class FlashlightController : MonoBehaviour
 {
     [SerializeField] GameObject flashlightObj;
     [SerializeField] float flashOnFogDensity;

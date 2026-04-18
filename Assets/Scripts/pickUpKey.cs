@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class pickUpKey : MonoBehaviour
+public class PickUpKey : MonoBehaviour
 {
-    public static bool isKeyPickedUp = false;
     public Collider keyCollider;
 
     public List<GameObject> Monsters;
@@ -12,9 +11,10 @@ public class pickUpKey : MonoBehaviour
 
     public GameObject objectToActivate;
 
-    public void keyPickUp()
+    public void KeyPickUp()
     {
-        isKeyPickedUp = true;
+        GameManager.Instance.hasKey = true;
+        
         Destroy(keyCollider.gameObject);
         foreach (GameObject monster in Monsters)
         {
