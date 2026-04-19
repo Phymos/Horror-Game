@@ -27,7 +27,7 @@ public class InteractScript : MonoBehaviour
             if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, 3f, interactableDoorLayer))
             {
                 DoorInteract doorOpenCloseScript = hit.collider.GetComponent<DoorInteract>();
-                doorOpenCloseScript.doorOpenClose();
+                doorOpenCloseScript.DoorOpenClose();
             }
             else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit2, 3f, interactableKeyLayer))
             {

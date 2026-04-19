@@ -14,7 +14,7 @@ public class DoorInteract : MonoBehaviour
         doorAnim = GetComponent<Animator>();
     }
 
-    public void doorOpenClose()
+    public void DoorOpenClose()
     {
         isOpen = !isOpen;
         doorAnim.SetBool("isOpen", isOpen);

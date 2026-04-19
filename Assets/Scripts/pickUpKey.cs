@@ -11,9 +11,11 @@ public class PickUpKey : MonoBehaviour
 
     public GameObject objectToActivate;
 
+    public string keyId;
+
     public void KeyPickUp()
     {
-        GameManager.Instance.hasKey = true;
+        GameManager.Instance.keys.Add(keyId);
         
         Destroy(keyCollider.gameObject);
         foreach (GameObject monster in Monsters)

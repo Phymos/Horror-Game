@@ -222,7 +222,7 @@ public class MonsterAi : MonoBehaviour
         doorOpenTimer -= Time.deltaTime;
         if (doorOpenTimer <= 0f)
         {
-            currentDoor.doorOpenClose();
+            currentDoor.DoorOpenClose();
             agent.isStopped = false;
             isWaitingForDoor = false;
             currentDoor = null;

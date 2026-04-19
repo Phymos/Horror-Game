@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public bool hasKey = false;
     public string lastExitPoint = "";
+
+    public HashSet<string> keys = new HashSet<string>();
 
     void Awake()
     {

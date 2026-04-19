@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,21 +9,25 @@ public class OpenLockedDoor : MonoBehaviour
 
     public Collider doorCollider;
 
+    public string requiredKeyId;
 
     void Update()
     {
-        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        CheckAction();
     }
 
-    void checkAction()
+    void CheckAction()
     {
-        if(GameManager.Instance.hasKey && Physics.Raycast(ray, out hit, 100))
+        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+
+        if(GameManager.Instance.keys.Contains(requiredKeyId) && Physics.Raycast(ray, out hit, 100))
         {
             if(hit.collider == doorCollider)
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
-                    Destroy(doorCollider.gameObject);
+                    DoorInteract doorOpenCloseScript = hit.collider.GetComponent<DoorInteract>();
+                    doorOpenCloseScript.DoorOpenClose();
                 }
             }
         }
