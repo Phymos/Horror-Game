@@ -2401,6 +2401,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6479641436145995399, guid: 87ded224585d01b45bc486a667c30045, type: 3}
   m_PrefabInstance: {fileID: 1682871874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &75389402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+  m_PrefabInstance: {fileID: 1623234158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &75389410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75389402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038a4dc7218362f409514292a6f00e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OpenLockedDoor
+  requiredKeyId: basementKey
 --- !u!1001 &76232189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14284,6 +14302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rust_key
       objectReference: {fileID: 0}
+    - target: {fileID: 374289202576707483, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.2843292
@@ -14398,6 +14420,7 @@ MonoBehaviour:
   Monsters: []
   statueMonsterAi: {fileID: 0}
   objectToActivate: {fileID: 0}
+  keyId: basementKey
 --- !u!1001 &598473976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17993,7 +18016,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 5
   m_Range: 2.75
   m_SpotAngle: 38.819275
   m_InnerSpotAngle: 30.621357
@@ -27266,6 +27289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_02_reinforced
       objectReference: {fileID: 0}
+    - target: {fileID: 1030974767, guid: abc00000000012939199303340980005, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1030974768, guid: abc00000000012939199303340980005, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.084
@@ -27306,10 +27333,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1382463735}
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000012939199303340980005, type: 3}
 --- !u!1 &1115928394 stripped
 GameObject:
@@ -32957,6 +32991,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030974608, guid: abc00000000006544311616142437404, type: 3}
   m_PrefabInstance: {fileID: 1947266806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1382463727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+  m_PrefabInstance: {fileID: 1108638342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1382463735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382463727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038a4dc7218362f409514292a6f00e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OpenLockedDoor
+  requiredKeyId: basementKey
 --- !u!1001 &1387902265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37328,7 +37380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d158daa378cc9e247bb99cddb2b02fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  hasKey: 0
   lastExitPoint: 
 --- !u!4 &1545969982
 Transform:
@@ -38533,10 +38584,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 75389410}
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000012939199303340980005, type: 3}
 --- !u!1 &1623694155 stripped
 GameObject:

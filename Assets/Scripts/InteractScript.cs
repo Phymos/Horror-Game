@@ -8,6 +8,7 @@ public class InteractScript : MonoBehaviour
     LayerMask interactableDoorLayer;
     LayerMask interactableKeyLayer;
     LayerMask interactableNextLevelLayer;
+    LayerMask interactableLockedDoorLayer;
 
     public LevelLoader levelLoader;
     public int nextLevelNo;
@@ -18,6 +19,7 @@ public class InteractScript : MonoBehaviour
         interactableDoorLayer = LayerMask.GetMask("DoorLayer");
         interactableKeyLayer = LayerMask.GetMask("KeyLayer");
         interactableNextLevelLayer = LayerMask.GetMask("NextLevelLayer");
+        interactableLockedDoorLayer = LayerMask.GetMask("LockedDoorLayer");
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -38,6 +40,11 @@ public class InteractScript : MonoBehaviour
             {
                 string exitPoint = nextLevelNo == 1 ? "basement" : "";
                 levelLoader.LoadLevel(nextLevelNo, exitPoint);
+            }
+            else if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit4, 3f, interactableLockedDoorLayer))
+            {
+                OpenLockedDoor openLockedDoor = hit4.collider.GetComponent<OpenLockedDoor>();
+                openLockedDoor.TryOpen();
             }
         }
     }
