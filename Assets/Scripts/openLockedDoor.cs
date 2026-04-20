@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 public class OpenLockedDoor : MonoBehaviour
 {
     public string requiredKeyId;
+    public AudioClip lockedSound;
+    AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void TryOpen()
     {
@@ -12,6 +19,10 @@ public class OpenLockedDoor : MonoBehaviour
         {
             DoorInteract doorInteract = GetComponent<DoorInteract>();
             doorInteract.DoorOpenClose();
+        }
+        else
+        {
+            audioSource.PlayOneShot(lockedSound);
         }
     }
 }
