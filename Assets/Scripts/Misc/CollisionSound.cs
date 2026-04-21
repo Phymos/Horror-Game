@@ -9,6 +9,8 @@ public class CollisionSound : MonoBehaviour
     private Rigidbody rb;
     private bool isPlaying = false;
 
+    public float noiseIntensity = 8f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,6 +23,7 @@ public class CollisionSound : MonoBehaviour
             sfxAudioSource.pitch = Random.Range(0.8f, 1.2f);
             sfxAudioSource.PlayOneShot(chainClip);
             isPlaying = true;
+            NoiseSystem.MakeNoise(transform.position, noiseIntensity);
         }
         
         if (rb.linearVelocity.magnitude <= velocityThreshold)

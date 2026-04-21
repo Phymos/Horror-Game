@@ -13797,70 +13797,6 @@ PrefabInstance:
       propertyPath: Amount
       value: 0.0389
       objectReference: {fileID: 0}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: grassJumpClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 168d56f03683e9c4d9cf659eb282b6d7, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: grassLandClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9f9825c29e5a9c046bc974c406968cef, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: concreteJumpClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 49205bff211d6134ea32b897f08d5c56, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: concreteLandClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7d15f9c4c7df3894d8d8b0afb23fee35, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: concreteRunClips.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: concreteWalkClips.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteRunClips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 399a09804e654b7499f6f1c18170b357, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteRunClips.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 9f46cb784a1ea4c49b490f0bca4b3e8e, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteRunClips.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 85f23be31e43fc849a0892dccf59385c, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteRunClips.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 13a2b3f47edde0c4b80a863137da8bdd, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteRunClips.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8300000, guid: b335a32dd2d6a0b41b461843bab59867, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteWalkClips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: e0e1e9dc7e587f843a6b8e5422a3f48b, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteWalkClips.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 17fe263cb90fed44c8e5abfd43d62cc2, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteWalkClips.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: f47756fa761578849b25b2b76a64ccf9, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteWalkClips.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: af5a1f28ab7d1314e83f0d50d394cb19, type: 3}
-    - target: {fileID: 211380130185737237, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: 'concreteWalkClips.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 0f9da89f689ba104281f4134d12a392c, type: 3}
     - target: {fileID: 761380411766529435, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 462.52
@@ -13901,10 +13837,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 828233912769789447, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 57ce48bfb23f6324fb851201f9f8d2a1, type: 2}
     - target: {fileID: 1889769099945776704, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: blinkScreen
       value: 

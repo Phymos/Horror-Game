@@ -62,7 +62,7 @@ public class PlayerFootstepSFX : MonoBehaviour
 
                 audioSource.pitch = Random.Range(0.9f, 1.1f);
                 float volume = Random.Range(0.2f, 0.3f);
-                AudioClip clip = clips[Random.Range(0, walkClips.Length)];
+                AudioClip clip = clips[Random.Range(0, clips.Length)];
                 audioSource.PlayOneShot(clip, volume);
 
                 NoiseSystem.MakeNoise(transform.position + Vector3.forward, 2f);

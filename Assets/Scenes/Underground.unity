@@ -13313,6 +13313,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 209676609}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!1 &212876191 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8408991615638493303, guid: 1de175cfe50db1744a261acc027df6b4, type: 3}
@@ -57180,6 +57181,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 767596796}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &767596796
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64161,6 +64163,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 838511107}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &838511107
 AudioSource:
   m_ObjectHideFlags: 0
@@ -65110,6 +65113,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 842717329}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!4 &844657581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1030975111, guid: abc00000000002289849505848579445, type: 3}
@@ -66274,18 +66278,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 1555891710297319776, guid: abc00000000016897821957288011325, type: 3}
-      propertyPath: doorSounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1555891710297319776, guid: abc00000000016897821957288011325, type: 3}
-      propertyPath: 'doorSounds.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 3cc1eab34f346bc4b8015c149629d921, type: 3}
-    - target: {fileID: 1555891710297319776, guid: abc00000000016897821957288011325, type: 3}
-      propertyPath: 'doorSounds.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 57ed4a07336315c46b49720312ae749f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -74592,7 +74584,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 668151967062551254, guid: abc00000000012939199303340980005, type: 3}
   m_PrefabInstance: {fileID: 1879632145}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1879632146}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d61c070499ad95548884a7abbf063a76, type: 3}
@@ -78664,6 +78656,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1057371148}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1057371148
 AudioSource:
   m_ObjectHideFlags: 0
@@ -84291,6 +84284,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1126231203}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1126231203
 AudioSource:
   m_ObjectHideFlags: 0
@@ -91111,7 +91105,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cc1eab34f346bc4b8015c149629d921, type: 3}
   - {fileID: 8300000, guid: 57ed4a07336315c46b49720312ae749f, type: 3}
   isOpen: 0
-  noiseIntensity: 0
+  noiseIntensity: 6
 --- !u!95 &1240585152
 Animator:
   serializedVersion: 7
@@ -97156,6 +97150,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1321064672}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1321064672
 AudioSource:
   m_ObjectHideFlags: 0
@@ -104366,6 +104361,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1396931798}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1396931798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -105943,6 +105939,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1419710353}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1419710353
 AudioSource:
   m_ObjectHideFlags: 0
@@ -110587,7 +110584,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3cc1eab34f346bc4b8015c149629d921, type: 3}
   - {fileID: 8300000, guid: 57ed4a07336315c46b49720312ae749f, type: 3}
   isOpen: 0
-  noiseIntensity: 0
+  noiseIntensity: 6
 --- !u!82 &1484727740
 AudioSource:
   m_ObjectHideFlags: 0
@@ -126884,6 +126881,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1729611612}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1729611612
 AudioSource:
   m_ObjectHideFlags: 0
@@ -127775,6 +127773,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 1735687036}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &1735687036
 AudioSource:
   m_ObjectHideFlags: 0
@@ -131731,6 +131730,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3701906534671349685, guid: abc00000000014594333859315274682, type: 3}
+      propertyPath: noiseIntensity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701906534671349685, guid: abc00000000014594333859315274682, type: 3}
       propertyPath: doorSounds.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -134440,6 +134443,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3701906534671349685, guid: abc00000000014594333859315274682, type: 3}
+      propertyPath: noiseIntensity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701906534671349685, guid: abc00000000014594333859315274682, type: 3}
       propertyPath: doorSounds.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -135428,8 +135435,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1030974768, guid: abc00000000012939199303340980005, type: 3}
       insertIndex: -1
       addedObject: {fileID: 387097383}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1879632147}
   m_SourcePrefab: {fileID: 100100000, guid: abc00000000012939199303340980005, type: 3}
+--- !u!1 &1879632146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1030974770, guid: abc00000000012939199303340980005, type: 3}
+  m_PrefabInstance: {fileID: 1879632145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1879632147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879632146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dce65a056d6b9549ab1ba7d996684f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoiseEmitter
+  intensity: 2
+  NoiseEmitterObject: {fileID: 1879632146}
+  noiseClip: {fileID: 0}
 --- !u!4 &1886413774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1030972088, guid: abc00000000015843192061177739421, type: 3}
@@ -144610,6 +144640,7 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 2026777129}
   chainClip: {fileID: 8300000, guid: 43554f66f4fd85e468406905f698ad85, type: 3}
   velocityThreshold: 1
+  noiseIntensity: 8
 --- !u!82 &2026777129
 AudioSource:
   m_ObjectHideFlags: 0
