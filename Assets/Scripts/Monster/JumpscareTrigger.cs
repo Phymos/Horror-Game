@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -11,7 +12,6 @@ public class JumpscareTrigger : MonoBehaviour
     [SerializeField] float vignetteSpeed = 1f;
     [SerializeField] float blackScreenSpeed = 1f;
 
-
     public Transform cameraPivot;
     AudioSource audioSource;
     public AudioClip scaryClip;
@@ -21,6 +21,9 @@ public class JumpscareTrigger : MonoBehaviour
     private Image blackScreen;
 
     bool triggered = false;
+    bool respawnTriggered = false;
+
+    public GameObject respawnUi;
 
     void Start()
     {
@@ -45,6 +48,14 @@ public class JumpscareTrigger : MonoBehaviour
             Color c = blackScreen.color;
             c.a = Mathf.MoveTowards(blackScreen.color.a, 0.8f, Time.deltaTime * blackScreenSpeed);
             blackScreen.color = c;
+
+            if (blackScreen.color.a >= 0.79f && !respawnTriggered)
+            {
+                respawnTriggered = true;
+                respawnUi.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }   
 
     }

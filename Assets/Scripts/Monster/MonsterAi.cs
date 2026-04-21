@@ -9,7 +9,7 @@ public class MonsterAi : MonoBehaviour
     public DoorInteract currentDoor;
     bool isWaitingForDoor = false;
 
-    public FieldOfView fov;
+    FieldOfView fov;
     bool canSeePlayer;
     float distanceToPlayer;
 
