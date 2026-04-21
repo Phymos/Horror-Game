@@ -181,6 +181,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
+            if (collision.relativeVelocity.y > 3f)
             playerFootstep.PlayLandSound();
         }
     }
