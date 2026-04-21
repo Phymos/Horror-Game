@@ -9,22 +9,28 @@ public class DoorTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Monster")) return;
 
-        StatueMonsterAi monsterAi = other.GetComponent<StatueMonsterAi>();
+        StatueMonsterAi statueAi = other.GetComponent<StatueMonsterAi>();
 
-        if (monsterAi == null) return;
+        if (statueAi == null) return;
         if (door.isOpen == true)
         {
-            monsterAi.currentDoor = null;
+            statueAi.currentDoor = null;
             return;
         }
         
-        monsterAi.currentDoor = door;
+        statueAi.currentDoor = door;
 
         NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
         if (agent != null)
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
+        }
+
+        MonsterAi monsterAi = other.GetComponent<MonsterAi>();
+        if (monsterAi != null)
+        {
+            monsterAi.currentDoor = door;
         }
     }
 }
