@@ -16,7 +16,7 @@ public class ActivationTrigger : MonoBehaviour
                 audioSource.PlayOneShot(clip);
             }
 
-            
+            GetComponent<Collider>().enabled = false;
         }
     }
 }
