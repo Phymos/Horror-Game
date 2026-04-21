@@ -11,8 +11,12 @@ public class PlayerFootstepSFX : MonoBehaviour
     AudioClip[] walkClips;
     AudioClip[] runClips;
 
-    public AudioClip jumpClip;
-    public AudioClip landClip;
+    public AudioClip grassJumpClip;
+    public AudioClip concreteJumpClip;
+    public AudioClip grassLandClip;
+    public AudioClip concreteLandClip;
+    AudioClip jumpClip;
+    AudioClip landClip;
 
     void Awake()
     {
@@ -21,6 +25,8 @@ public class PlayerFootstepSFX : MonoBehaviour
 
         walkClips = grassWalkClips;
         runClips = grassRunClips;
+        jumpClip = grassJumpClip;
+        landClip = grassLandClip;
     }
 
     void Update()
@@ -31,10 +37,14 @@ public class PlayerFootstepSFX : MonoBehaviour
             {
                 walkClips = grassWalkClips;
                 runClips = grassRunClips;
+                jumpClip = grassJumpClip;
+                landClip = grassLandClip;
             }else if (hit.collider.gameObject.layer == 11) // concrete
             {
                 walkClips = concreteWalkClips;
                 runClips = concreteRunClips;
+                jumpClip = concreteJumpClip;
+                landClip = concreteLandClip;
             }
         }
     }
