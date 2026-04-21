@@ -242,12 +242,6 @@ public class StatueMonsterAi : MonoBehaviour
 
     void DoorOpening()
     {
-        Vector3 toDestination = agent.destination - transform.position;
-        Vector3 toDoor = currentDoor.transform.position - transform.position;
-
-        float dot = Vector3.Dot(toDestination.normalized, toDoor.normalized); //dot product (yönü bulmak için, 1 ise aynı yön -1 ise zıt)
-        Debug.Log("dot: " + dot + " | isOpen: " + currentDoor.isOpen + " | isWaiting: " + isWaitingForDoor + " | timer: " + doorOpenTimer);
-
         if (currentDoor.isOpen)
         {
             agent.isStopped = false;

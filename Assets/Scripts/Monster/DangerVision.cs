@@ -37,7 +37,10 @@ public class DangerVision : MonoBehaviour
 
     void Update()
     {
-        normalJumpscare();
+        if (statueMonsterAi.enabled)
+        {
+            normalJumpscare();
+        }
     }
 
     void ActivateEffect()

@@ -33780,6 +33780,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30f49db3e793d44b764d0b4469be67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatueMonsterAi
+--- !u!114 &540379800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540379789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba642eca3828bb40929c0d05dac4743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatueScrapeSound
+  scrapeClip: {fileID: 8300000, guid: f2a4fb85cdc73a0419da1c937f415338, type: 3}
+  intensity: 6
 --- !u!1 &540723650
 GameObject:
   m_ObjectHideFlags: 0
@@ -152674,7 +152688,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8138769418677191477, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 540379800}
   m_SourcePrefab: {fileID: 100100000, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
 --- !u!114 &1838227915939505384
 MonoBehaviour:
