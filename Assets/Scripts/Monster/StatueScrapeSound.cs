@@ -5,7 +5,7 @@ public class StatueScrapeSound : MonoBehaviour
     private StatueMonsterAi statueAi;
     AudioSource audioSource;
     public AudioClip scrapeClip;
-    public float intensity;
+    public float intensity; 
 
     void Awake()
     {
