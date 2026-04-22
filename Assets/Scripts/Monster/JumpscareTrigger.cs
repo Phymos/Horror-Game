@@ -65,11 +65,11 @@ public class JumpscareTrigger : MonoBehaviour
         if (triggered) return;
         if (!other.CompareTag("Player")) return;
 
+        audioSource.PlayOneShot(scaryClip, 2.5f);
+
         other.GetComponent<PlayerController>().enabled = false;
         other.GetComponentInChildren<Animator>().enabled = false;
 
         triggered = true;
-
-        audioSource.PlayOneShot(scaryClip, 2.5f);
     }
 }
