@@ -12,6 +12,8 @@ public class JumpscareTrigger : MonoBehaviour
     [SerializeField] float vignetteSpeed = 1f;
     [SerializeField] float blackScreenSpeed = 1f;
 
+    
+
     public Transform cameraPivot;
     AudioSource audioSource;
     public AudioClip scaryClip;
@@ -65,11 +67,16 @@ public class JumpscareTrigger : MonoBehaviour
         if (triggered) return;
         if (!other.CompareTag("Player")) return;
 
+        triggered = true;
+
+        StatueMonsterAi monsterAi = GetComponent<StatueMonsterAi>();
+        if (monsterAi != null) monsterAi.enabled = false;
+
+        audioSource.Stop(); // varsa çalan sesi kes
+
         audioSource.PlayOneShot(scaryClip, 2.5f);
 
         other.GetComponent<PlayerController>().enabled = false;
         other.GetComponentInChildren<Animator>().enabled = false;
-
-        triggered = true;
     }
 }

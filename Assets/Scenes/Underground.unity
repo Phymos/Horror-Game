@@ -8005,7 +8005,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130004426}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db5eeb195123fb648983319c3b41cbf4, type: 3}
   m_Name: 
@@ -33840,6 +33840,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatueScrapeSound
   scrapeClip: {fileID: 8300000, guid: f2a4fb85cdc73a0419da1c937f415338, type: 3}
   intensity: 6
+--- !u!82 &540379803 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2592060887293545010, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+  m_PrefabInstance: {fileID: 1810907514839661888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &540379807 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 1307197206444639158, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+  m_PrefabInstance: {fileID: 1810907514839661888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540723650
 GameObject:
   m_ObjectHideFlags: 0
@@ -109641,6 +109651,7 @@ MonoBehaviour:
   vignetteSpeed: 0.25
   blackScreenSpeed: 0.5
   cameraPivot: {fileID: 1847265665}
+  jumpscareAudioSource: {fileID: 0}
   scaryClip: {fileID: 0}
   volume: {fileID: 8249899815180830109}
   respawnUi: {fileID: 0}
@@ -152418,6 +152429,14 @@ PrefabInstance:
       propertyPath: cameraPivot
       value: 
       objectReference: {fileID: 1847265665}
+    - target: {fileID: 2118595034191727238, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+      propertyPath: jumpscareAudioSource
+      value: 
+      objectReference: {fileID: 540379803}
+    - target: {fileID: 2499985342272458087, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 540379807}
     - target: {fileID: 2499985342272458087, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
       propertyPath: player
       value: 
@@ -152482,6 +152501,10 @@ PrefabInstance:
       propertyPath: MaxDistance
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 2592060887293545010, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 57ce48bfb23f6324fb851201f9f8d2a1, type: 2}
     - target: {fileID: 2592060887293545010, guid: 5c1aaae3a5688394692ac1d09d6086dd, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
@@ -153714,7 +153737,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 761380411766529435, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.768
+      value: -63.3
       objectReference: {fileID: 0}
     - target: {fileID: 761380411766529435, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -153722,7 +153745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 761380411766529435, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.078
+      value: -5.1
       objectReference: {fileID: 0}
     - target: {fileID: 761380411766529435, guid: b11a1ff4a568ffe4f96ce7d9491d217c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -160179,7 +160202,7 @@ Transform:
   m_GameObject: {fileID: 3031675192127666296}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.74762833, z: -0, w: -0.66411746}
-  m_LocalPosition: {x: 6.723314, y: 2.484, z: -0.08330533}
+  m_LocalPosition: {x: -63.344685, y: 2.484, z: -5.105305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

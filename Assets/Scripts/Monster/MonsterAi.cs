@@ -29,7 +29,6 @@ public class MonsterAi : MonoBehaviour
 
     public Transform player;
 
-    public float chaseRange = 10f;
     public float patrolSpeed = 2f;
     public float chaseSpeed = 5f;
 
@@ -80,7 +79,7 @@ public class MonsterAi : MonoBehaviour
 
         bool playerVisibleOrRemembered = lastSeenTimer > 0f;
 
-        if (playerVisibleOrRemembered && distanceToPlayer <= chaseRange)
+        if (playerVisibleOrRemembered && distanceToPlayer <= fov.radius)
         {
             currentState = EnemyState.Chase;
             isChasing = true;
